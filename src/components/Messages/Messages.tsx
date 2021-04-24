@@ -1,8 +1,6 @@
 import React from 'react';
 import local from './Messages.module.scss'
 import {BsBoxArrowInUp} from 'react-icons/bs';
-import MessageRequest from './message/MessageRequest';
-import MessageResponse from './message/MessageResponse';
 import {NavLink, Route} from 'react-router-dom';
 import Conversation from './conversation/Conversation';
 
@@ -11,19 +9,19 @@ const Messages = () => {
         <section className={local.messagesWrap}>
             <div className={local.messagesInner}>
                 <div className={local.friendsMessages}>
-                    <NavLink to="/messages/conversation" className={local.messagesLink} activeClassName={local.active}>
+                    <NavLink to="/messages/conversation/1" className={local.messagesLink} activeClassName={local.active}>
                         <div className={local.linkTitle}>Amy Wong</div>
                     </NavLink>
-                    <NavLink to="#" className={local.messagesLink}>
+                    <NavLink to="/messages/conversation/2" className={local.messagesLink} activeClassName={local.active}>
                         <div className={local.linkTitle}>Zapp Brannigan</div>
                     </NavLink>
-                    <NavLink to="#" className={local.messagesLink}>
+                    <NavLink to="/messages/conversation/3" className={local.messagesLink} activeClassName={local.active}>
                         <div className={local.linkTitle}>John D. Zoidberg</div>
                     </NavLink>
-                    <NavLink to="#" className={local.messagesLink}>
+                    <NavLink to="/messages/conversation/4" className={local.messagesLink} activeClassName={local.active}>
                         <div className={local.linkTitle}>Turanga Leela</div>
                     </NavLink>
-                    <NavLink to="#" className={local.messagesLink}>
+                    <NavLink to="/messages/conversation/5" className={local.messagesLink} activeClassName={local.active}>
                         <div className={local.linkTitle}>Hubert J. Farnsworth</div>
                     </NavLink>
                 </div>
