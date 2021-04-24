@@ -7,7 +7,7 @@ type MessagesLinkPropsType = {
     name: string
 }
 
-const MessagesLink = (props: MessagesLinkPropsType) => {
+const DialogLink = (props: MessagesLinkPropsType) => {
     return (
         <NavLink to={'/messages/conversation/' + props.id} className={local.messagesLink} activeClassName={local.active}>
             <div className={local.linkTitle}>{props.name}</div>
@@ -15,5 +15,5 @@ const MessagesLink = (props: MessagesLinkPropsType) => {
     )
 }
 
-export default MessagesLink;
+export default DialogLink;
 

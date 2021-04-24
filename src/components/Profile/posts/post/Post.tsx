@@ -6,6 +6,7 @@ import { AiFillLike } from "react-icons/ai";
 type PostType = {
     name: string
     likes: number
+    text: string
 }
 
 const Post = (props: PostType) => {
@@ -19,7 +20,7 @@ const Post = (props: PostType) => {
                     <img src={img} alt="Avatar"/>
                 </div>
                 <div className={local.postText}>
-                    &#8220;Phew! What a terrible dream I had! I will never sleep again!&#8221;
+                    &#8220;{props.text}&#8221;
                 </div>
             </div>
             <div className={local.postLikes}>
