@@ -1,3 +1,4 @@
+@import "src/styles/variables";
 
 .messagesWrap {
   display: flex;
@@ -9,7 +10,8 @@
 
     .friendsMessages {
       padding-right: 15px;
-      border-right: 1px solid red;
+      border-right: 1px solid #4C5866;
+      flex-basis: 30%;
 
       .messagesLink {
         text-decoration: none;
@@ -27,6 +29,7 @@
     }
 
     .messagesContent {
+      @include Ubuntu;
     }
   }
 

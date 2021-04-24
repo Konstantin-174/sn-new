@@ -1,6 +1,7 @@
 import React from 'react';
 import local from './Messages.module.scss'
 import {BsBoxArrowInUp} from 'react-icons/bs';
+import Message from './message/Message';
 
 const Messages = () => {
     return (
@@ -24,7 +25,10 @@ const Messages = () => {
                     </a>
                 </div>
                 <div className={local.messagesContent}>
-
+                    <Message/>
+                    <Message/>
+                    <Message/>
+                    <Message/>
                 </div>
             </div>
             <div className={local.messageInput}>

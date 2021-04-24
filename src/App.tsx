@@ -14,8 +14,8 @@ function App() {
                 <Navbar/>
                 <section className="Content">
                     <Switch>
-                        <Route path="/profile" component={Profile}/>
-                        <Route path="/messages" component={Messages}/>
+                        <Route path="/profile" render={() => <Profile/>}/>
+                        <Route path="/messages" render={() => <Messages/>}/>
                         <Redirect to="/profile"/>
                     </Switch>
                 </section>
