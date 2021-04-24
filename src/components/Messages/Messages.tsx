@@ -1,29 +1,22 @@
 import React from 'react';
 import local from './Messages.module.scss'
 import {BsBoxArrowInUp} from 'react-icons/bs';
-import {NavLink, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import Conversation from './conversation/Conversation';
+import MessagesLink from './MessagesLink';
+
+
 
 const Messages = () => {
     return (
         <section className={local.messagesWrap}>
             <div className={local.messagesInner}>
                 <div className={local.friendsMessages}>
-                    <NavLink to="/messages/conversation/1" className={local.messagesLink} activeClassName={local.active}>
-                        <div className={local.linkTitle}>Amy Wong</div>
-                    </NavLink>
-                    <NavLink to="/messages/conversation/2" className={local.messagesLink} activeClassName={local.active}>
-                        <div className={local.linkTitle}>Zapp Brannigan</div>
-                    </NavLink>
-                    <NavLink to="/messages/conversation/3" className={local.messagesLink} activeClassName={local.active}>
-                        <div className={local.linkTitle}>John D. Zoidberg</div>
-                    </NavLink>
-                    <NavLink to="/messages/conversation/4" className={local.messagesLink} activeClassName={local.active}>
-                        <div className={local.linkTitle}>Turanga Leela</div>
-                    </NavLink>
-                    <NavLink to="/messages/conversation/5" className={local.messagesLink} activeClassName={local.active}>
-                        <div className={local.linkTitle}>Hubert J. Farnsworth</div>
-                    </NavLink>
+                    <MessagesLink id={1} name="Amy Wong"/>
+                    <MessagesLink id={2} name="Zapp Brannigan"/>
+                    <MessagesLink id={3} name="John D. Zoidberg"/>
+                    <MessagesLink id={4} name="Turanga Leela"/>
+                    <MessagesLink id={5} name="Hubert J. Farnsworth"/>
                 </div>
                 <div className={local.messagesContent}>
                     <Route path="/messages/conversation" render={ () => <Conversation/>} />

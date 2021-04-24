@@ -3,11 +3,16 @@ import local from './Post.module.scss';
 import img from './img/ghML0mY_.jpg';
 import { AiFillLike } from "react-icons/ai";
 
-const Post = () => {
+type PostType = {
+    name: string
+    likes: number
+}
+
+const Post = (props: PostType) => {
     return (
         <section className={local.postWrap}>
             <div className={local.postAutor}>
-                Philip J. Fry
+                {props.name}
             </div>
             <div className={local.postContent}>
                 <div className={local.ava}>
@@ -19,7 +24,9 @@ const Post = () => {
             </div>
             <div className={local.postLikes}>
                 <AiFillLike className={local.likeIcon}/>
-                <div className={local.likesCount}>12</div>
+                <div className={local.likesCount}>
+                    {props.likes}
+                </div>
             </div>
         </section>
     )

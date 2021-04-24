@@ -12,7 +12,7 @@ const MyPosts = () => {
                 </div>
                 <BsBoxArrowInDown className={local.inputBtn} size="2em"/>
             </div>
-            <Post/>
+            <Post name="Philip J. Fry" likes={12}/>
         </section>
     )
 }

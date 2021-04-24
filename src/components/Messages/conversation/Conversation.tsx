@@ -6,8 +6,8 @@ import MessageResponse from '../message/MessageResponse';
 const Conversation = () => {
     return (
         <section className={local.conversationWrap}>
-            <MessageRequest/>
-            <MessageResponse/>
+            <MessageRequest message="Hi! How are you?"/>
+            <MessageResponse message="Hi! I'm fine, thanks!"/>
         </section>
     )
 }

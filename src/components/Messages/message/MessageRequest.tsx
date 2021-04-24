@@ -1,10 +1,14 @@
 import React from 'react';
 import local from './MessageRequest.module.scss';
 
-const MessageRequest = () => {
+type MessageRequestPropsType = {
+    message: string
+}
+
+const MessageRequest = (props: MessageRequestPropsType) => {
     return (
         <section className={local.messageWrap}>
-            Hi! How are you?
+            {props.message}
         </section>
     )
 }
