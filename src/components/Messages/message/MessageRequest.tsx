@@ -1,7 +1,7 @@
 import React from 'react';
-import local from './Message.module.scss';
+import local from './MessageRequest.module.scss';
 
-const Message = () => {
+const MessageRequest = () => {
     return (
         <section className={local.messageWrap}>
             Hi! How are you?
@@ -9,4 +9,4 @@ const Message = () => {
     )
 }
 
-export default Message;
+export default MessageRequest;

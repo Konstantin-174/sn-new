@@ -30,6 +30,7 @@
 
     .messagesContent {
       @include Ubuntu;
+      flex-basis: 70%;
     }
   }
 
@@ -65,6 +66,4 @@
       }
     }
   }
-
-
 }

@@ -1,14 +1,17 @@
 import React from 'react';
 import local from './Messages.module.scss'
 import {BsBoxArrowInUp} from 'react-icons/bs';
-import Message from './message/Message';
+import MessageRequest from './message/MessageRequest';
+import MessageResponse from './message/MessageResponse';
+import {Route} from 'react-router-dom';
+import Conversation from './conversation/Conversation';
 
 const Messages = () => {
     return (
         <section className={local.messagesWrap}>
             <div className={local.messagesInner}>
                 <div className={local.friendsMessages}>
-                    <a href="#" className={local.messagesLink}>
+                    <a href="/messages/conversation" className={local.messagesLink}>
                         <div className={local.linkTitle}>Amy Wong</div>
                     </a>
                     <a href="#" className={local.messagesLink}>
@@ -25,10 +28,7 @@ const Messages = () => {
                     </a>
                 </div>
                 <div className={local.messagesContent}>
-                    <Message/>
-                    <Message/>
-                    <Message/>
-                    <Message/>
+                    <Route path="/messages/conversation" render={ () => <Conversation/>} />
                 </div>
             </div>
             <div className={local.messageInput}>
