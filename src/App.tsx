@@ -5,8 +5,13 @@ import Navbar from './components/Navbar/Navbar';
 import Messages from './components/Messages/Messages';
 import Profile from './components/Profile/Profile';
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
+import {RootStateType} from './state/state';
 
-function App() {
+type AppPropsType = {
+    state: RootStateType
+}
+
+function App(props: AppPropsType) {
     return (
         <BrowserRouter>
             <div className="App-wrapper">
@@ -14,8 +19,8 @@ function App() {
                 <Navbar/>
                 <section className="Content">
                     <Switch>
-                        <Route path="/profile" render={() => <Profile/>}/>
-                        <Route path="/messages" render={() => <Messages/>}/>
+                        <Route path="/profile" render={() => <Profile posts={props.state.posts}/>}/>
+                        <Route path="/messages" render={() => <Messages dialogs={props.state.dialogs}/>}/>
                         <Redirect to="/profile"/>
                     </Switch>
                 </section>

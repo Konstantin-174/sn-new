@@ -5,8 +5,8 @@ import { AiFillLike } from "react-icons/ai";
 
 type PostType = {
     name: string
-    likes: number
     text: string
+    likes: number
 }
 
 const Post = (props: PostType) => {

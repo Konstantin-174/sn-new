@@ -4,18 +4,15 @@ import {BsBoxArrowInUp} from 'react-icons/bs';
 import {Route} from 'react-router-dom';
 import Conversation from './conversation/Conversation';
 import DialogLink from './DialogLink';
+import {DialogsType} from '../../state/state';
 
-const Messages = () => {
+type MessagesPropsType = {
+    dialogs: Array<DialogsType>
+}
 
-    let dialogs = [
-        {id: 1, name: "Amy Wong"},
-        {id: 2, name: "Zapp Brannigan"},
-        {id: 3, name: "John D. Zoidberg"},
-        {id: 4, name: "Turanga Leela"},
-        {id: 5, name: "Hubert J. Farnsworth"},
-    ]
+const Messages = (props: MessagesPropsType) => {
 
-    let dialogsEl = dialogs.map( (dialog) => <DialogLink id={dialog.id} name={dialog.name}/>)
+    let dialogsEl = props.dialogs.map( (dialog) => <DialogLink id={dialog.id} name={dialog.name}/>)
 
     return (
         <section className={local.messagesWrap}>

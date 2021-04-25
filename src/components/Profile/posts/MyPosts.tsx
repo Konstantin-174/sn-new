@@ -2,16 +2,15 @@ import React from 'react';
 import local from './MyPosts.module.scss'
 import {BsBoxArrowInDown} from 'react-icons/bs';
 import Post from './post/Post';
+import {PostsType} from '../../../state/state';
 
-const MyPosts = () => {
+type MyPostsPropsType = {
+    posts: Array<PostsType>
+}
 
-    let posts = [
-        {id: 1, name: 'Philip J. Fry', text: 'Phew! What a terrible dream I had! I will never sleep again!', likes: 12},
-        {id: 2, name: 'John D. Zoidberg', text: 'What\'s up?', likes: 5},
-        {id: 3, name: 'Turanga Leela', text: 'Have you run out of idiotic thoughts?', likes: 24},
-    ]
+const MyPosts = (props: MyPostsPropsType) => {
 
-    let postsEl = posts.map((post) => <Post name={post.name}
+    let postsEl = props.posts.map((post) => <Post name={post.name}
                                             text={post.text}
                                             likes={post.likes}/>)
 
