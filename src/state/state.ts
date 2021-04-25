@@ -1,3 +1,5 @@
+import {rerenderTree} from './rerenderTree';
+
 export type PostsType = {
     id: number
     name: string
@@ -28,4 +30,16 @@ export let state: RootStateType = {
         {id: 4, name: "Turanga Leela"},
         {id: 5, name: "Hubert J. Farnsworth"},
     ]
+}
+
+export const addPost = (postMessage: string) => {
+    const newPost: PostsType = {
+        id: 4,
+        name: "%@User_name@%",
+        text: postMessage,
+        likes: 0
+    }
+
+    state.posts.push(newPost)
+    rerenderTree(state);
 }

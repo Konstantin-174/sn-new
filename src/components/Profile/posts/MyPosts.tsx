@@ -6,9 +6,19 @@ import {PostsType} from '../../../state/state';
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
+    addPost: (postMessage: string) => void
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
+
+    const newPostElement = React.createRef<HTMLInputElement>();
+
+    const addPost = () => {
+        if (newPostElement.current) {
+            props.addPost(newPostElement.current.value)
+            newPostElement.current.value = "";
+        }
+    }
 
     let postsEl = props.posts.map((post) => <Post name={post.name}
                                             text={post.text}
@@ -18,9 +28,9 @@ const MyPosts = (props: MyPostsPropsType) => {
         <section className={local.postsWrap}>
             <div className={local.inputPost}>
                 <div className={local.inputArea}>
-                    <input type="text"/>
+                    <input ref={newPostElement} type="text"/>
                 </div>
-                <BsBoxArrowInDown className={local.inputBtn} size="2em"/>
+                <BsBoxArrowInDown onClick={addPost} className={local.inputBtn} size="2em"/>
             </div>
             {postsEl}
         </section>
