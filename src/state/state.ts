@@ -12,17 +12,26 @@ export type DialogsType = {
     name: string
 }
 
-export type RootStateType = {
+export type ProfilePageType = {
     posts: Array<PostsType>
+    newPostText: string
+}
+
+export type RootStateType = {
+    profilePage: ProfilePageType
     dialogs: Array<DialogsType>
 }
 
 export let state: RootStateType = {
-    posts: [
-        {id: 1, name: 'Philip J. Fry', text: 'Phew! What a terrible dream I had! I will never sleep again!', likes: 12},
-        {id: 2, name: 'John D. Zoidberg', text: 'What\'s up?', likes: 5},
-        {id: 3, name: 'Turanga Leela', text: 'Have you run out of idiotic thoughts?', likes: 24},
-    ],
+    profilePage: {
+        posts: [
+            {id: 1, name: 'Philip J. Fry', text: 'Phew! What a terrible dream I had! I will never sleep again!', likes: 12},
+            {id: 2, name: 'John D. Zoidberg', text: 'What\'s up?', likes: 5},
+            {id: 3, name: 'Turanga Leela', text: 'Have you run out of idiotic thoughts?', likes: 24},
+        ],
+        newPostText: ""
+    },
+
     dialogs: [
         {id: 1, name: "Amy Wong"},
         {id: 2, name: "Zapp Brannigan"},
@@ -40,6 +49,11 @@ export const addPost = (postMessage: string) => {
         likes: 0
     }
 
-    state.posts.push(newPost)
+    state.profilePage.posts.push(newPost)
+    rerenderTree(state);
+}
+
+export const changeNewText = (newText: string) => {
+    state.profilePage.newPostText = newText
     rerenderTree(state);
 }

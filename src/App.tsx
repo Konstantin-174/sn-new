@@ -5,11 +5,12 @@ import Navbar from './components/Navbar/Navbar';
 import Messages from './components/Messages/Messages';
 import Profile from './components/Profile/Profile';
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
-import {addPost, RootStateType} from './state/state';
+import {RootStateType} from './state/state';
 
 type AppPropsType = {
     state: RootStateType
     addPost: (postMessage: string) => void
+    changeNewText: (newText: string) => void
 }
 
 function App(props: AppPropsType) {
@@ -20,8 +21,9 @@ function App(props: AppPropsType) {
                 <Navbar/>
                 <section className="Content">
                     <Switch>
-                        <Route path="/profile" render={() => <Profile posts={props.state.posts}
-                                                                      addPost={addPost}/>}/>
+                        <Route path="/profile" render={() => <Profile profilePage={props.state.profilePage}
+                                                                      addPost={props.addPost}
+                                                                      changeNewText={props.changeNewText}/>}/>
                         <Route path="/messages" render={() => <Messages dialogs={props.state.dialogs}/>}/>
                         <Redirect to="/profile"/>
                     </Switch>

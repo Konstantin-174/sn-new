@@ -3,11 +3,12 @@ import local from './Profile.module.scss'
 import Avatar from './avatar/Avatar';
 import ProfileInfo from './profileInfo/ProfileInfo';
 import MyPosts from './posts/MyPosts';
-import {addPost, PostsType} from '../../state/state';
+import {addPost, changeNewText, ProfilePageType} from '../../state/state';
 
 type ProfilePropsType = {
-    posts: Array<PostsType>
+    profilePage: ProfilePageType
     addPost: (postMessage: string) => void
+    changeNewText: (newText: string) => void
 }
 
 const Profile = (props: ProfilePropsType) => {
@@ -17,7 +18,11 @@ const Profile = (props: ProfilePropsType) => {
               <Avatar/>
               <ProfileInfo/>
           </div>
-            <MyPosts posts={props.posts} addPost={addPost}/>
+            <MyPosts posts={props.profilePage.posts}
+                     message={props.profilePage.newPostText}
+                     addPostCallBack={addPost}
+                     addNewPostTextCallBack={changeNewText}
+            />
         </section>
     )
 }

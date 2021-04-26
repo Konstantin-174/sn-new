@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import local from './MyPosts.module.scss'
 import {BsBoxArrowInDown} from 'react-icons/bs';
 import Post from './post/Post';
@@ -6,31 +6,37 @@ import {PostsType} from '../../../state/state';
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
-    addPost: (postMessage: string) => void
+    message: string
+    addPostCallBack: (postMessage: string) => void
+    addNewPostTextCallBack: (newText: string) => void
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
 
-    const newPostElement = React.createRef<HTMLInputElement>();
+    let postsEl = props.posts.map((post) => <Post key={post.id}
+                                                  name={post.name}
+                                                  text={post.text}
+                                                  likes={post.likes}/>)
 
     const addPost = () => {
-        if (newPostElement.current) {
-            props.addPost(newPostElement.current.value)
-            newPostElement.current.value = "";
-        }
+        props.addPostCallBack(props.message)
+        props.addNewPostTextCallBack('')
     }
 
-    let postsEl = props.posts.map((post) => <Post name={post.name}
-                                            text={post.text}
-                                            likes={post.likes}/>)
+    const newTextChangeHandler = (el: ChangeEvent<HTMLInputElement>) => props.addNewPostTextCallBack(el.currentTarget.value)
 
     return (
         <section className={local.postsWrap}>
             <div className={local.inputPost}>
                 <div className={local.inputArea}>
-                    <input ref={newPostElement} type="text"/>
+                    <input type="text"
+                           value={props.message}
+                           onChange={newTextChangeHandler}
+                    />
                 </div>
-                <BsBoxArrowInDown onClick={addPost} className={local.inputBtn} size="2em"/>
+                <BsBoxArrowInDown onClick={addPost}
+                                  className={local.inputBtn} size="2em"
+                />
             </div>
             {postsEl}
         </section>
