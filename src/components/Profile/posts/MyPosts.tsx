@@ -6,7 +6,7 @@ import {PostsType} from '../../../state/state';
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
-    message: string
+    newPost: string
     addPostCallBack: (postMessage: string) => void
     addNewPostTextCallBack: (newText: string) => void
 }
@@ -19,7 +19,7 @@ const MyPosts = (props: MyPostsPropsType) => {
                                                   likes={post.likes}/>)
 
     const addPost = () => {
-        props.addPostCallBack(props.message)
+        props.addPostCallBack(props.newPost)
         props.addNewPostTextCallBack('')
     }
 
@@ -30,7 +30,7 @@ const MyPosts = (props: MyPostsPropsType) => {
             <div className={local.inputPost}>
                 <div className={local.inputArea}>
                     <input type="text"
-                           value={props.message}
+                           value={props.newPost}
                            onChange={newTextChangeHandler}
                     />
                 </div>

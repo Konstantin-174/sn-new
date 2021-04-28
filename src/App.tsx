@@ -11,6 +11,8 @@ type AppPropsType = {
     state: RootStateType
     addPost: (postMessage: string) => void
     changeNewText: (newText: string) => void
+    addMessage: (message: string) => void
+    changeNewMessage: (newMessage: string) => void
 }
 
 function App(props: AppPropsType) {
@@ -24,7 +26,11 @@ function App(props: AppPropsType) {
                         <Route path="/profile" render={() => <Profile profilePage={props.state.profilePage}
                                                                       addPost={props.addPost}
                                                                       changeNewText={props.changeNewText}/>}/>
-                        <Route path="/messages" render={() => <Messages dialogs={props.state.dialogs}/>}/>
+                        <Route path="/messages" render={() => <Messages newMessage={props.state.dialogsPage.newMessageText}
+                                                                        changeNewMessage={props.changeNewMessage}
+                                                                        messages={props.state.dialogsPage.messages}
+                                                                        dialogs={props.state.dialogsPage.dialogs}
+                                                                        addMessage={props.addMessage}/>}/>
                         <Redirect to="/profile"/>
                     </Switch>
                 </section>

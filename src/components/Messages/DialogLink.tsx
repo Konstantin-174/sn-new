@@ -3,13 +3,16 @@ import local from './Messages.module.scss';
 import React from 'react';
 
 type DialogsLinkPropsType = {
-    id: number
+    id: string
     name: string
 }
 
 const DialogLink = (props: DialogsLinkPropsType) => {
     return (
-        <NavLink to={'/messages/conversation/' + props.id} className={local.messagesLink} activeClassName={local.active}>
+        <NavLink to={'/messages/conversation/' + props.id}
+                 className={local.messagesLink}
+                 activeClassName={local.active}
+        >
             <div className={local.linkTitle}>{props.name}</div>
         </NavLink>
     )

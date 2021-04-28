@@ -1,18 +1,30 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import local from './Messages.module.scss'
 import {BsBoxArrowInUp} from 'react-icons/bs';
-import {Route} from 'react-router-dom';
 import Conversation from './conversation/Conversation';
 import DialogLink from './DialogLink';
-import {DialogsType} from '../../state/state';
+import {DialogsType, MessageType} from '../../state/state';
 
 type MessagesPropsType = {
     dialogs: Array<DialogsType>
+    messages: Array<MessageType>
+    newMessage: string
+    addMessage: (message: string) => void
+    changeNewMessage: (newMessage: string) => void
 }
 
 const Messages = (props: MessagesPropsType) => {
 
-    let dialogsEl = props.dialogs.map( (dialog) => <DialogLink id={dialog.id} name={dialog.name}/>)
+    let dialogsEl = props.dialogs.map( (dialog) => <DialogLink key={dialog.id}
+                                                                       id={dialog.id}
+                                                                       name={dialog.name}/>)
+
+    const addMessage = () => {
+        props.addMessage(props.newMessage)
+        props.changeNewMessage("")
+    }
+
+    const newMessageChangeHandler = (el: ChangeEvent<HTMLInputElement>) => props.changeNewMessage(el.currentTarget.value)
 
     return (
         <section className={local.messagesWrap}>
@@ -21,14 +33,19 @@ const Messages = (props: MessagesPropsType) => {
                     { dialogsEl }
                 </div>
                 <div className={local.messagesContent}>
-                    <Route path="/messages/conversation" render={ () => <Conversation/>} />
+                    <Conversation message={props.messages}/>
                 </div>
             </div>
             <div className={local.messageInput}>
                 <div className={local.inputArea}>
-                    <input type="text"/>
+                    <input type="text"
+                           value={props.newMessage}
+                           onChange={newMessageChangeHandler}
+                    />
                 </div>
-                <BsBoxArrowInUp className={local.inputBtn} size="2em"/>
+                <BsBoxArrowInUp className={local.inputBtn}
+                                size="2em" onClick={addMessage}
+                />
             </div>
         </section>
     )
