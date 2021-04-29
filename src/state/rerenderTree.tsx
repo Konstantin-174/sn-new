@@ -1,16 +1,12 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import App from '../App';
-import {addMessage, addPost, changeNewMessage, changeNewText, RootStateType} from './state';
+import {store} from './store';
 
-export const rerenderTree = (state: RootStateType) => {
+export const rerenderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
-            <App state={state}
-                 changeNewMessage={changeNewMessage}
-                 addPost={addPost}
-                 changeNewText={changeNewText}
-                 addMessage={addMessage}/>
+            <App store={store}/>
         </React.StrictMode>,
         document.getElementById('root')
     );

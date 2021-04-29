@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import local from './MyPosts.module.scss'
 import {BsBoxArrowInDown} from 'react-icons/bs';
 import Post from './post/Post';
-import {PostsType} from '../../../state/state';
+import {PostsType} from '../../../state/store';
 
 type MyPostsPropsType = {
     posts: Array<PostsType>

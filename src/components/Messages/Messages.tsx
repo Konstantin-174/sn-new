@@ -3,7 +3,7 @@ import local from './Messages.module.scss'
 import {BsBoxArrowInUp} from 'react-icons/bs';
 import Conversation from './conversation/Conversation';
 import DialogLink from './DialogLink';
-import {DialogsType, MessageType} from '../../state/state';
+import {DialogsType, MessageType} from '../../state/store';
 
 type MessagesPropsType = {
     dialogs: Array<DialogsType>
@@ -15,7 +15,7 @@ type MessagesPropsType = {
 
 const Messages = (props: MessagesPropsType) => {
 
-    let dialogsEl = props.dialogs.map( (dialog) => <DialogLink key={dialog.id}
+    let dialogsEl = props.dialogs.map( (dialog:DialogsType) => <DialogLink key={dialog.id}
                                                                        id={dialog.id}
                                                                        name={dialog.name}/>)
 

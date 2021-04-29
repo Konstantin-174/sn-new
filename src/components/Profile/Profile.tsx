@@ -3,7 +3,7 @@ import local from './Profile.module.scss'
 import Avatar from './avatar/Avatar';
 import ProfileInfo from './profileInfo/ProfileInfo';
 import MyPosts from './posts/MyPosts';
-import {addPost, changeNewText, ProfilePageType} from '../../state/state';
+import {ProfilePageType} from '../../state/store';
 
 type ProfilePropsType = {
     profilePage: ProfilePageType
@@ -20,8 +20,8 @@ const Profile = (props: ProfilePropsType) => {
           </div>
             <MyPosts posts={props.profilePage.posts}
                      newPost={props.profilePage.newPostText}
-                     addPostCallBack={addPost}
-                     addNewPostTextCallBack={changeNewText}
+                     addPostCallBack={props.addPost}
+                     addNewPostTextCallBack={props.changeNewText}
             />
         </section>
     )

@@ -1,6 +1,6 @@
-import React from 'react';
 import './index.scss';
 import {rerenderTree} from './state/rerenderTree';
-import {state} from './state/state';
+import {store} from './state/store';
 
-rerenderTree(state);
+store.subscribe(rerenderTree);
+rerenderTree();

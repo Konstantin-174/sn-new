@@ -5,17 +5,16 @@ import Navbar from './components/Navbar/Navbar';
 import Messages from './components/Messages/Messages';
 import Profile from './components/Profile/Profile';
 import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
-import {RootStateType} from './state/state';
+import {StoreType} from './state/store';
 
 type AppPropsType = {
-    state: RootStateType
-    addPost: (postMessage: string) => void
-    changeNewText: (newText: string) => void
-    addMessage: (message: string) => void
-    changeNewMessage: (newMessage: string) => void
+    store: StoreType
 }
 
 function App(props: AppPropsType) {
+
+    const state = props.store.getState();
+
     return (
         <BrowserRouter>
             <div className="App-wrapper">
@@ -23,14 +22,14 @@ function App(props: AppPropsType) {
                 <Navbar/>
                 <section className="Content">
                     <Switch>
-                        <Route path="/profile" render={() => <Profile profilePage={props.state.profilePage}
-                                                                      addPost={props.addPost}
-                                                                      changeNewText={props.changeNewText}/>}/>
-                        <Route path="/messages" render={() => <Messages newMessage={props.state.dialogsPage.newMessageText}
-                                                                        changeNewMessage={props.changeNewMessage}
-                                                                        messages={props.state.dialogsPage.messages}
-                                                                        dialogs={props.state.dialogsPage.dialogs}
-                                                                        addMessage={props.addMessage}/>}/>
+                        <Route path="/profile" render={() => <Profile profilePage={state.profilePage}
+                                                                      addPost={props.store.addPost.bind(props.store)}
+                                                                      changeNewText={props.store.changeNewText.bind(props.store)}/>}/>
+                        <Route path="/messages" render={() => <Messages newMessage={state.dialogsPage.newMessageText}
+                                                                        changeNewMessage={props.store.changeNewMessage.bind(props.store)}
+                                                                        messages={state.dialogsPage.messages}
+                                                                        dialogs={state.dialogsPage.dialogs}
+                                                                        addMessage={props.store.addMessage.bind(props.store)}/>}/>
                         <Redirect to="/profile"/>
                     </Switch>
                 </section>
