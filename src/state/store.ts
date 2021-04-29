@@ -1,5 +1,5 @@
-import {rerenderTree} from './rerenderTree';
 import {v1} from 'uuid';
+import {rerenderTree} from '../index';
 
 export type PostsType = {
     id: string
@@ -106,6 +106,17 @@ export const store: StoreType = {
             newMessageText: ''
         }
     },
+    _render() {
+        rerenderTree();
+    },
+
+    getState() {
+        return this._state;
+    },
+    subscribe(callback) {
+        this._render = callback;
+    },
+
     addPost(postMessage: string) {
         const newPost: PostsType = {
             id: v1(),
@@ -133,13 +144,4 @@ export const store: StoreType = {
         this._state.dialogsPage.newMessageText = newMessage;
         this._render();
     },
-    _render() {
-      rerenderTree();
-    },
-    getState() {
-        return this._state;
-    },
-    subscribe(callback) {
-      this._render = callback;
-    }
 }

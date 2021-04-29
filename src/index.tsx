@@ -1,6 +1,17 @@
+import ReactDOM from 'react-dom';
+import React from 'react';
 import './index.scss';
-import {rerenderTree} from './state/rerenderTree';
 import {store} from './state/store';
+import App from './App';
+
+export const rerenderTree = () => {
+    ReactDOM.render(
+        <React.StrictMode>
+            <App store={store}/>
+        </React.StrictMode>,
+        document.getElementById('root')
+    );
+}
 
 store.subscribe(rerenderTree);
 rerenderTree();
