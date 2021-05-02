@@ -1,6 +1,7 @@
 import {v1} from 'uuid';
 import {rerenderTree} from '../index';
 
+// === STATE TYPES ===
 export type PostsType = {
     id: string
     name: string
@@ -36,14 +37,35 @@ export type RootStateType = {
 
 export type StoreType = {
     _state: RootStateType
-    addPost: (postMessage: string) => void
-    changeNewText: (newText: string) => void
-    addMessage: (message: string) => void
-    changeNewMessage: (newMessage: string) => void
     _render: () => void
     getState: () => RootStateType
     subscribe: (callback: () => void) => void
+    dispatch: (action: AddPostActionType | ChangeNewTextActionType |
+        AddMessageActionType | ChangeNewMessageActionType) => void
 }
+// === / STATE TYPES ===
+
+// === DISPATCH TYPES ===
+export type AddPostActionType = {
+    type: "ADD-POST"
+    postMessage: string
+}
+
+export type ChangeNewTextActionType = {
+    type: "CHANGE-NEW-TEXT"
+    newText: string
+}
+
+export type AddMessageActionType = {
+    type: "ADD-MESSAGE"
+    message: string
+}
+
+export type ChangeNewMessageActionType = {
+    type: "CHANGE-NEW-MESSAGE"
+    newMessage: string
+}
+// === / DISPATCH TYPES ===
 
 export const store: StoreType = {
     _state: {
@@ -117,31 +139,30 @@ export const store: StoreType = {
         this._render = callback;
     },
 
-    addPost(postMessage: string) {
-        const newPost: PostsType = {
-            id: v1(),
-            name: '%@User_name@%',
-            text: postMessage,
-            likes: 0
-        }
+    dispatch(action) {
+        if (action.type === "ADD-POST") {
+            const newPost: PostsType = {
+                id: v1(),
+                name: '%@User_name@%',
+                text: action.postMessage,
+                likes: 0
+            }
 
-        this._state.profilePage.posts.push(newPost)
-        this._render();
-    },
-    changeNewText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._render();
-    },
-    addMessage(message: string) {
-        const newMessage: MessageType = {
-            id: v1(),
-            text: message
+            this._state.profilePage.posts.push(newPost)
+            this._render();
+        } else if (action.type === "CHANGE-NEW-TEXT") {
+            this._state.profilePage.newPostText = action.newText;
+            this._render();
+        } else if (action.type === "ADD-MESSAGE") {
+            const newMessage: MessageType = {
+                id: v1(),
+                text: action.message
+            }
+            this._state.dialogsPage.messages.push(newMessage);
+            this._render();
+        } else if (action.type === "CHANGE-NEW-MESSAGE") {
+            this._state.dialogsPage.newMessageText = action.newMessage;
+            this._render();
         }
-        this._state.dialogsPage.messages.push(newMessage);
-        this._render();
-    },
-    changeNewMessage(newMessage: string) {
-        this._state.dialogsPage.newMessageText = newMessage;
-        this._render();
-    },
+    }
 }

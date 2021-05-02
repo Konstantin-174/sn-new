@@ -2,13 +2,12 @@ import React, {ChangeEvent} from 'react';
 import local from './MyPosts.module.scss'
 import {BsBoxArrowInDown} from 'react-icons/bs';
 import Post from './post/Post';
-import {PostsType} from '../../../state/store';
+import {AddPostActionType, ChangeNewTextActionType, PostsType} from '../../../state/store';
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
     newPost: string
-    addPostCallBack: (postMessage: string) => void
-    addNewPostTextCallBack: (newText: string) => void
+    dispatch: (action: AddPostActionType | ChangeNewTextActionType) => void
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -19,11 +18,11 @@ const MyPosts = (props: MyPostsPropsType) => {
                                                   likes={post.likes}/>)
 
     const addPost = () => {
-        props.addPostCallBack(props.newPost)
-        props.addNewPostTextCallBack('')
+        props.dispatch({type: "ADD-POST", postMessage: props.newPost}) //props.newPost
+        props.dispatch({type: "CHANGE-NEW-TEXT", newText: ""}) //el.currentTarget.value
     }
 
-    const newTextChangeHandler = (el: ChangeEvent<HTMLInputElement>) => props.addNewPostTextCallBack(el.currentTarget.value)
+    const newTextChangeHandler = (el: ChangeEvent<HTMLInputElement>) => props.dispatch({type: "CHANGE-NEW-TEXT", newText: el.currentTarget.value})
 
     return (
         <section className={local.postsWrap}>

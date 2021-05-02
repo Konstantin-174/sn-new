@@ -3,14 +3,13 @@ import local from './Messages.module.scss'
 import {BsBoxArrowInUp} from 'react-icons/bs';
 import Conversation from './conversation/Conversation';
 import DialogLink from './DialogLink';
-import {DialogsType, MessageType} from '../../state/store';
+import {AddMessageActionType, ChangeNewMessageActionType, DialogsType, MessageType} from '../../state/store';
 
 type MessagesPropsType = {
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
     newMessage: string
-    addMessage: (message: string) => void
-    changeNewMessage: (newMessage: string) => void
+    dispatch: (action: AddMessageActionType | ChangeNewMessageActionType) => void
 }
 
 const Messages = (props: MessagesPropsType) => {
@@ -20,11 +19,11 @@ const Messages = (props: MessagesPropsType) => {
                                                                        name={dialog.name}/>)
 
     const addMessage = () => {
-        props.addMessage(props.newMessage)
-        props.changeNewMessage("")
+        props.dispatch({type: "ADD-MESSAGE", message: props.newMessage}) //props.newMessage
+        props.dispatch({type: "CHANGE-NEW-MESSAGE", newMessage: ""}) //el.currentTarget.value
     }
 
-    const newMessageChangeHandler = (el: ChangeEvent<HTMLInputElement>) => props.changeNewMessage(el.currentTarget.value)
+    const newMessageChangeHandler = (el: ChangeEvent<HTMLInputElement>) => props.dispatch({type: "CHANGE-NEW-MESSAGE", newMessage: el.currentTarget.value})
 
     return (
         <section className={local.messagesWrap}>

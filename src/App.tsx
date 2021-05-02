@@ -23,13 +23,11 @@ function App(props: AppPropsType) {
                 <section className="Content">
                     <Switch>
                         <Route path="/profile" render={() => <Profile profilePage={state.profilePage}
-                                                                      addPost={props.store.addPost.bind(props.store)}
-                                                                      changeNewText={props.store.changeNewText.bind(props.store)}/>}/>
+                                                                      dispatch={props.store.dispatch.bind(props.store)}/>}/>
                         <Route path="/messages" render={() => <Messages newMessage={state.dialogsPage.newMessageText}
-                                                                        changeNewMessage={props.store.changeNewMessage.bind(props.store)}
                                                                         messages={state.dialogsPage.messages}
                                                                         dialogs={state.dialogsPage.dialogs}
-                                                                        addMessage={props.store.addMessage.bind(props.store)}/>}/>
+                                                                        dispatch={props.store.dispatch.bind(props.store)}/>}/>
                         <Redirect to="/profile"/>
                     </Switch>
                 </section>

@@ -3,12 +3,11 @@ import local from './Profile.module.scss'
 import Avatar from './avatar/Avatar';
 import ProfileInfo from './profileInfo/ProfileInfo';
 import MyPosts from './posts/MyPosts';
-import {ProfilePageType} from '../../state/store';
+import {AddPostActionType, ChangeNewTextActionType, ProfilePageType} from '../../state/store';
 
 type ProfilePropsType = {
     profilePage: ProfilePageType
-    addPost: (postMessage: string) => void
-    changeNewText: (newText: string) => void
+    dispatch: (action: AddPostActionType | ChangeNewTextActionType) => void
 }
 
 const Profile = (props: ProfilePropsType) => {
@@ -20,8 +19,7 @@ const Profile = (props: ProfilePropsType) => {
           </div>
             <MyPosts posts={props.profilePage.posts}
                      newPost={props.profilePage.newPostText}
-                     addPostCallBack={props.addPost}
-                     addNewPostTextCallBack={props.changeNewText}
+                     dispatch={props.dispatch}
             />
         </section>
     )
