@@ -45,7 +45,7 @@ export type StoreType = {
 }
 // === / STATE TYPES ===
 
-// === DISPATCH TYPES ===
+// === ACTION TYPES ===
 export type AddPostActionType = {
     type: "ADD-POST"
     postMessage: string
@@ -65,7 +65,7 @@ export type ChangeNewMessageActionType = {
     type: "CHANGE-NEW-MESSAGE"
     newMessage: string
 }
-// === / DISPATCH TYPES ===
+// === / ACTION TYPES ===
 
 export const store: StoreType = {
     _state: {
@@ -166,3 +166,34 @@ export const store: StoreType = {
         }
     }
 }
+
+// === ACTION CREATORS ===
+export const addPostAC = (postText: string): AddPostActionType => {
+    return {
+        type: "ADD-POST",
+        postMessage: postText
+    }
+}
+
+export const changeNewTextAC = (newText: string): ChangeNewTextActionType => {
+    return {
+        type: "CHANGE-NEW-TEXT",
+        newText: newText
+    }
+}
+
+export const addMessageAC = (message: string): AddMessageActionType => {
+    return {
+        type: "ADD-MESSAGE",
+        message: message
+    }
+}
+
+export const changeNewMessageAC = (newMessage: string): ChangeNewMessageActionType => {
+    return {
+        type: "CHANGE-NEW-MESSAGE",
+        newMessage: newMessage
+    }
+}
+
+// === / ACTION CREATORS ===
