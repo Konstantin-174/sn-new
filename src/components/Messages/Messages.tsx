@@ -26,7 +26,6 @@ const Messages = (props: MessagesPropsType) => {
 
     const addMessage = () => {
         props.dispatch(addMessageAC(props.newMessage)) //props.newMessage
-        props.dispatch(changeNewMessageAC("")) //el.currentTarget.value
     }
 
     const newMessageChangeHandler = (el: ChangeEvent<HTMLInputElement>) => props.dispatch(changeNewMessageAC(el.currentTarget.value))

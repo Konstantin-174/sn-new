@@ -141,19 +141,20 @@ export const store: StoreType = {
 
     dispatch(action) {
         if (action.type === "ADD-POST") {
+            this._state.profilePage.newPostText = "";
             const newPost: PostsType = {
                 id: v1(),
                 name: '%@User_name@%',
                 text: action.postMessage,
                 likes: 0
             }
-
             this._state.profilePage.posts.push(newPost)
             this._render();
         } else if (action.type === "CHANGE-NEW-TEXT") {
             this._state.profilePage.newPostText = action.newText;
             this._render();
         } else if (action.type === "ADD-MESSAGE") {
+            this._state.dialogsPage.newMessageText = "";
             const newMessage: MessageType = {
                 id: v1(),
                 text: action.message

@@ -25,7 +25,6 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     const addPost = () => {
         props.dispatch(addPostAC(props.newPost)) //props.newPost
-        props.dispatch(changeNewTextAC('')) //el.currentTarget.value
     }
 
     const newTextChangeHandler = (el: ChangeEvent<HTMLInputElement>) => props.dispatch(changeNewTextAC(el.currentTarget.value))
