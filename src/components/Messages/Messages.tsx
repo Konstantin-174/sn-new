@@ -3,32 +3,22 @@ import local from './Messages.module.scss'
 import {BsBoxArrowInUp} from 'react-icons/bs';
 import Conversation from './conversation/Conversation';
 import DialogLink from './DialogLink';
-import {
-    AddMessageActionType,
-    ChangeNewMessageActionType,
-    DialogsType,
-    MessageType
-} from '../../state/store';
-import {addMessageAC, changeNewMessageAC} from '../../state/reducers/dialogs_reducer';
+import {DialogsPageType,DialogsType} from '../../state/store';
 
 type MessagesPropsType = {
-    dialogs: Array<DialogsType>
-    messages: Array<MessageType>
+    dialogs: DialogsPageType
     newMessage: string
-    dispatch: (action: AddMessageActionType | ChangeNewMessageActionType) => void
+    newMessageChangeHandler: (text: ChangeEvent<HTMLInputElement>) => void
+    addMessage: () => void
 }
 
 const Messages = (props: MessagesPropsType) => {
 
-    let dialogsEl = props.dialogs.map( (dialog:DialogsType) => <DialogLink key={dialog.id}
+    let dialogsEl = props.dialogs.dialogs.map( (dialog:DialogsType) => <DialogLink key={dialog.id}
                                                                        id={dialog.id}
                                                                        name={dialog.name}/>)
 
-    const addMessage = () => {
-        props.dispatch(addMessageAC(props.newMessage)) //props.newMessage
-    }
-
-    const newMessageChangeHandler = (el: ChangeEvent<HTMLInputElement>) => props.dispatch(changeNewMessageAC(el.currentTarget.value))
+    const newMessageChangeHandler = (text: ChangeEvent<HTMLInputElement>) => props.newMessageChangeHandler(text)
 
     return (
         <section className={local.messagesWrap}>
@@ -37,7 +27,7 @@ const Messages = (props: MessagesPropsType) => {
                     { dialogsEl }
                 </div>
                 <div className={local.messagesContent}>
-                    <Conversation message={props.messages}/>
+                    <Conversation message={props.dialogs.messages}/>
                 </div>
             </div>
             <div className={local.messageInput}>
@@ -49,7 +39,7 @@ const Messages = (props: MessagesPropsType) => {
                     />
                 </div>
                 <BsBoxArrowInUp className={local.inputBtn}
-                                size="2em" onClick={addMessage}
+                                size="2em" onClick={props.addMessage}
                 />
             </div>
         </section>

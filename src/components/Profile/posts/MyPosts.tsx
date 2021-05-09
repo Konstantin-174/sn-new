@@ -8,7 +8,7 @@ type MyPostsPropsType = {
     posts: Array<PostsType>
     newPost: string
     addPost: () => void
-    newTextChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void
+    newTextChangeHandler: (text: ChangeEvent<HTMLInputElement>) => void
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
