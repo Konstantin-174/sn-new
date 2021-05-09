@@ -2,8 +2,8 @@ import React from 'react';
 import local from './Profile.module.scss'
 import Avatar from './avatar/Avatar';
 import ProfileInfo from './profileInfo/ProfileInfo';
-import MyPosts from './posts/MyPosts';
 import {AddPostActionType, ChangeNewTextActionType, ProfilePageType} from '../../state/store';
+import {MyPostsContainer} from './posts/MyPostsContainer';
 
 type ProfilePropsType = {
     profilePage: ProfilePageType
@@ -17,7 +17,7 @@ const Profile = (props: ProfilePropsType) => {
               <Avatar/>
               <ProfileInfo/>
           </div>
-            <MyPosts posts={props.profilePage.posts}
+            <MyPostsContainer posts={props.profilePage.posts}
                      newPost={props.profilePage.newPostText}
                      dispatch={props.dispatch}
             />
