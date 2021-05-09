@@ -7,8 +7,43 @@ import {
     MessageType
 } from '../store';
 
+const initialState = {
+    dialogs: [
+        {
+            id: v1(),
+            name: 'Amy Wong'
+        },
+        {
+            id: v1(),
+            name: 'Zapp Brannigan'
+        },
+        {
+            id: v1(),
+            name: 'John D. Zoidberg'
+        },
+        {
+            id: v1(),
+            name: 'Turanga Leela'
+        },
+        {
+            id: v1(),
+            name: 'Hubert J. Farnsworth'
+        },
+    ],
+    messages: [
+        {
+            id: v1(),
+            text: 'Hi! How are you?'
+        },
+        {
+            id: v1(),
+            text: 'Hi! I\'m fine, thanks!'
+        }
+    ],
+    newMessageText: ''
+}
 
-export const dialogsReducer = (state: DialogsPageType, action: AddPostActionType | ChangeNewTextActionType | AddMessageActionType | ChangeNewMessageActionType) => {
+export const dialogsReducer = (state: DialogsPageType = initialState, action: AddPostActionType | ChangeNewTextActionType | AddMessageActionType | ChangeNewMessageActionType) => {
 
     switch (action.type) {
         case "ADD-MESSAGE":

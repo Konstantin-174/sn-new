@@ -1,7 +1,7 @@
 import ReactDOM from 'react-dom';
 import React from 'react';
 import './index.scss';
-import {store} from './state/store';
+import {store} from './state/redux_store';
 import App from './App';
 
 export const rerenderTree = () => {
@@ -13,5 +13,7 @@ export const rerenderTree = () => {
     );
 }
 
-store.subscribe(rerenderTree);
+store.subscribe(() => {
+    rerenderTree()
+});
 rerenderTree();
