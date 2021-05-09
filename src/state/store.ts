@@ -1,5 +1,7 @@
 import {v1} from 'uuid';
 import {rerenderTree} from '../index';
+import {profileReducer} from './reducers/profile_reducer';
+import {dialogsReducer} from './reducers/dialogs_reducer';
 
 // === STATE TYPES ===
 export type PostsType = {
@@ -47,22 +49,22 @@ export type StoreType = {
 
 // === ACTION TYPES ===
 export type AddPostActionType = {
-    type: "ADD-POST"
+    type: 'ADD-POST'
     postMessage: string
 }
 
 export type ChangeNewTextActionType = {
-    type: "CHANGE-NEW-TEXT"
+    type: 'CHANGE-NEW-TEXT'
     newText: string
 }
 
 export type AddMessageActionType = {
-    type: "ADD-MESSAGE"
+    type: 'ADD-MESSAGE'
     message: string
 }
 
 export type ChangeNewMessageActionType = {
-    type: "CHANGE-NEW-MESSAGE"
+    type: 'CHANGE-NEW-MESSAGE'
     newMessage: string
 }
 // === / ACTION TYPES ===
@@ -122,7 +124,7 @@ export const store: StoreType = {
                 },
                 {
                     id: v1(),
-                    text: "Hi! I'm fine, thanks!"
+                    text: 'Hi! I\'m fine, thanks!'
                 }
             ],
             newMessageText: ''
@@ -140,61 +142,9 @@ export const store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            this._state.profilePage.newPostText = "";
-            const newPost: PostsType = {
-                id: v1(),
-                name: '%@User_name@%',
-                text: action.postMessage,
-                likes: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._render();
-        } else if (action.type === "CHANGE-NEW-TEXT") {
-            this._state.profilePage.newPostText = action.newText;
-            this._render();
-        } else if (action.type === "ADD-MESSAGE") {
-            this._state.dialogsPage.newMessageText = "";
-            const newMessage: MessageType = {
-                id: v1(),
-                text: action.message
-            }
-            this._state.dialogsPage.messages.push(newMessage);
-            this._render();
-        } else if (action.type === "CHANGE-NEW-MESSAGE") {
-            this._state.dialogsPage.newMessageText = action.newMessage;
-            this._render();
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+
+        this._render();
     }
 }
-
-// === ACTION CREATORS ===
-export const addPostAC = (postText: string): AddPostActionType => {
-    return {
-        type: "ADD-POST",
-        postMessage: postText
-    }
-}
-
-export const changeNewTextAC = (newText: string): ChangeNewTextActionType => {
-    return {
-        type: "CHANGE-NEW-TEXT",
-        newText: newText
-    }
-}
-
-export const addMessageAC = (message: string): AddMessageActionType => {
-    return {
-        type: "ADD-MESSAGE",
-        message: message
-    }
-}
-
-export const changeNewMessageAC = (newMessage: string): ChangeNewMessageActionType => {
-    return {
-        type: "CHANGE-NEW-MESSAGE",
-        newMessage: newMessage
-    }
-}
-
-// === / ACTION CREATORS ===

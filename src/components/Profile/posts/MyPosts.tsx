@@ -3,12 +3,11 @@ import local from './MyPosts.module.scss'
 import {BsBoxArrowInDown} from 'react-icons/bs';
 import Post from './post/Post';
 import {
-    addPostAC,
     AddPostActionType,
-    changeNewTextAC,
     ChangeNewTextActionType,
     PostsType
 } from '../../../state/store';
+import {addPostAC, changeNewTextAC} from '../../../state/reducers/profile_reducer';
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
@@ -36,6 +35,7 @@ const MyPosts = (props: MyPostsPropsType) => {
                     <input type="text"
                            value={props.newPost}
                            onChange={newTextChangeHandler}
+                           placeholder="Enter your message"
                     />
                 </div>
                 <BsBoxArrowInDown onClick={addPost}

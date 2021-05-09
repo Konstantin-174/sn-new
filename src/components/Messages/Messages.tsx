@@ -4,12 +4,12 @@ import {BsBoxArrowInUp} from 'react-icons/bs';
 import Conversation from './conversation/Conversation';
 import DialogLink from './DialogLink';
 import {
-    addMessageAC,
-    AddMessageActionType, changeNewMessageAC,
+    AddMessageActionType,
     ChangeNewMessageActionType,
     DialogsType,
     MessageType
 } from '../../state/store';
+import {addMessageAC, changeNewMessageAC} from '../../state/reducers/dialogs_reducer';
 
 type MessagesPropsType = {
     dialogs: Array<DialogsType>
@@ -45,6 +45,7 @@ const Messages = (props: MessagesPropsType) => {
                     <input type="text"
                            value={props.newMessage}
                            onChange={newMessageChangeHandler}
+                           placeholder="Enter your message"
                     />
                 </div>
                 <BsBoxArrowInUp className={local.inputBtn}
