@@ -2,7 +2,7 @@ import React from 'react';
 import local from './Conversation.module.scss';
 import MessageRequest from '../message/MessageRequest';
 import MessageResponse from '../message/MessageResponse';
-import {MessageType} from '../../../state/store';
+import {MessageType} from '../../../state/reducers/dialogs_reducer';
 
 type ConversationType = {
     message: Array<MessageType>

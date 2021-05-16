@@ -1,12 +1,18 @@
 import {v1} from 'uuid';
 import {
-    AddMessageActionType,
     AddPostActionType,
-    ChangeNewMessageActionType,
-    ChangeNewTextActionType,
-    PostsType,
-    ProfilePageType
-} from '../store';
+    AllActionTypes,
+    ChangeNewTextActionType
+} from '../redux_store';
+
+export type PostsType = {
+    id: string
+    name: string
+    text: string
+    likes: number
+}
+
+export type InitialProfileStateType = typeof initialState
 
 const initialState = {
     posts: [
@@ -28,12 +34,12 @@ const initialState = {
             text: 'Have you run out of idiotic thoughts?',
             likes: 24
         },
-    ],
+    ] as Array<PostsType>,
         newPostText: ''
 }
 
 
-export const profileReducer = (state: ProfilePageType = initialState, action: AddPostActionType | ChangeNewTextActionType | AddMessageActionType | ChangeNewMessageActionType) => {
+export const profileReducer = (state: InitialProfileStateType = initialState, action: AllActionTypes): InitialProfileStateType => {
     switch (action.type){
         case "ADD-POST":
             state.newPostText = "";

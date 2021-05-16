@@ -1,29 +1,38 @@
 import React, {ChangeEvent} from 'react';
-import {
-    AddPostActionType,
-    ChangeNewTextActionType,
-    PostsType
-} from '../../../state/store';
-import {addPostAC, changeNewTextAC} from '../../../state/reducers/profile_reducer';
+import {addPostAC, changeNewTextAC, InitialProfileStateType, PostsType} from '../../../state/reducers/profile_reducer';
 import MyPosts from './MyPosts';
+import {RootStateType} from '../../../state/redux_store';
+import {connect} from 'react-redux';
+import {Dispatch} from 'redux';
 
-type MyPostsPropsType = {
+type MapStatePropsType = {
     posts: Array<PostsType>
     newPost: string
-    dispatch: (action: AddPostActionType | ChangeNewTextActionType) => void
 }
 
-export const MyPostsContainer = (props: MyPostsPropsType) => {
+type MapDispatchPropsType = {
+    onAddPost: (props: InitialProfileStateType) => void
+    onNewTextChangeHandler: (el: ChangeEvent<HTMLInputElement>) => void
+}
 
-    const onAddPost = () => {
-        props.dispatch(addPostAC(props.newPost)) //props.newPost
+export type MyPostsPropsType = MapStatePropsType & MapDispatchPropsType
+
+let mapStateToProps = (state: RootStateType): MapStatePropsType => {
+    return {
+        posts: state.profileReducer.posts,
+        newPost: state.profileReducer.newPostText
     }
-
-    const onNewTextChangeHandler = (text: ChangeEvent<HTMLInputElement>) => props.dispatch(changeNewTextAC(text.currentTarget.value))
-
-    return <MyPosts posts={props.posts}
-                 addPost={onAddPost}
-                 newPost={props.newPost}
-                 newTextChangeHandler={onNewTextChangeHandler}
-        />
 }
+
+let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+    return {
+        onAddPost: (props: InitialProfileStateType) => {
+            dispatch(addPostAC(props.newPostText))
+        },
+        onNewTextChangeHandler: (el: ChangeEvent<HTMLInputElement>) => {
+            dispatch(changeNewTextAC(el.currentTarget.value))
+        }
+    }
+}
+
+export const MyPostsContainer = connect (mapStateToProps, mapDispatchToProps)(MyPosts)

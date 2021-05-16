@@ -4,72 +4,51 @@ import {profileReducer} from './reducers/profile_reducer';
 import {dialogsReducer} from './reducers/dialogs_reducer';
 
 // === STATE TYPES ===
-export type PostsType = {
+type PostsType = {
     id: string
     name: string
     text: string
     likes: number
 }
 
-export type DialogsType = {
+type DialogsType = {
     id: string
     name: string
 }
 
-export type MessageType = {
+type MessageType = {
     id: string
     text: string
 }
 
-export type ProfilePageType = {
+type ProfilePageType = {
     posts: Array<PostsType>
     newPostText: string
 }
 
-export type DialogsPageType = {
+type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
     newMessageText: string
 }
 
-export type RootStateType = {
+type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
 
-export type StoreType = {
+type StoreType = {
     _state: RootStateType
     _render: () => void
     getState: () => RootStateType
     subscribe: (callback: () => void) => void
-    dispatch: (action: AddPostActionType | ChangeNewTextActionType |
-        AddMessageActionType | ChangeNewMessageActionType) => void
+    dispatch: (action: any) => void
 }
 // === / STATE TYPES ===
 
-// === ACTION TYPES ===
-export type AddPostActionType = {
-    type: 'ADD-POST'
-    postMessage: string
-}
 
-export type ChangeNewTextActionType = {
-    type: 'CHANGE-NEW-TEXT'
-    newText: string
-}
 
-export type AddMessageActionType = {
-    type: 'ADD-MESSAGE'
-    message: string
-}
-
-export type ChangeNewMessageActionType = {
-    type: 'CHANGE-NEW-MESSAGE'
-    newMessage: string
-}
-// === / ACTION TYPES ===
-
-export const store: StoreType = {
+const store: StoreType = {
     _state: {
         profilePage: {
             posts: [

@@ -1,28 +1,46 @@
 import React, {ChangeEvent} from 'react';
 import {
-    AddMessageActionType,
-    ChangeNewMessageActionType, DialogsPageType,
-} from '../../state/store';
-import {addMessageAC, changeNewMessageAC} from '../../state/reducers/dialogs_reducer';
+    addMessageAC,
+    changeNewMessageAC,
+    DialogsType,
+    InitialDialogsStateType, MessageType
+} from '../../state/reducers/dialogs_reducer';
 import Messages from './Messages';
+import {connect} from 'react-redux';
+import {RootStateType} from '../../state/redux_store';
+import { Dispatch } from 'redux';
 
-type MessagesPropsType = {
-    dialogs: DialogsPageType
-    dispatch: (action: AddMessageActionType | ChangeNewMessageActionType) => void
+type MapStatePropsType = {
+    newMessage: string
+    dialogs: Array<DialogsType>
+    messages: Array<MessageType>
 }
 
-const MessagesContainer = (props: MessagesPropsType) => {
-    const onAddMessage = () => {
-        props.dispatch(addMessageAC(props.dialogs.newMessageText)) //props.newMessage
+type MapDispatchPropsType = {
+    onAddMessage: (props: InitialDialogsStateType) => void
+    onNewMessageChangeHandler: (el: ChangeEvent<HTMLInputElement>) => void
+}
+
+export type MessagesPropsType = MapStatePropsType & MapDispatchPropsType
+
+let mapStateToProps = (state: RootStateType): MapStatePropsType => {
+    return {
+        newMessage: state.dialogsReducer.newMessageText,
+        dialogs: state.dialogsReducer.dialogs,
+        messages: state.dialogsReducer.messages
     }
-
-    const onNewMessageChangeHandler = (el: ChangeEvent<HTMLInputElement>) => props.dispatch(changeNewMessageAC(el.currentTarget.value))
-
-    return <Messages newMessage={props.dialogs.newMessageText}
-                  dialogs={props.dialogs}
-                  addMessage={onAddMessage}
-                  newMessageChangeHandler={onNewMessageChangeHandler}
-        />
 }
 
-export default MessagesContainer;
+let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
+    return {
+        onAddMessage: (props: InitialDialogsStateType) => {
+            dispatch(addMessageAC(props.newMessageText))
+        },
+        onNewMessageChangeHandler: (el: ChangeEvent<HTMLInputElement>) => {
+            dispatch(changeNewMessageAC(el.currentTarget.value))
+        }
+    }
+}
+
+export const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages);
+

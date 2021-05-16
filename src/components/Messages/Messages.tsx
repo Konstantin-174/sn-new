@@ -3,31 +3,25 @@ import local from './Messages.module.scss'
 import {BsBoxArrowInUp} from 'react-icons/bs';
 import Conversation from './conversation/Conversation';
 import DialogLink from './DialogLink';
-import {DialogsPageType,DialogsType} from '../../state/store';
-
-type MessagesPropsType = {
-    dialogs: DialogsPageType
-    newMessage: string
-    newMessageChangeHandler: (text: ChangeEvent<HTMLInputElement>) => void
-    addMessage: () => void
-}
+import {DialogsType} from '../../state/reducers/dialogs_reducer';
+import {MessagesPropsType} from './MessagesContainer';
 
 const Messages = (props: MessagesPropsType) => {
 
-    let dialogsEl = props.dialogs.dialogs.map( (dialog:DialogsType) => <DialogLink key={dialog.id}
-                                                                       id={dialog.id}
-                                                                       name={dialog.name}/>)
+    let dialogsEl = props.dialogs.map((dialog: DialogsType) => <DialogLink key={dialog.id}
+                                                                           id={dialog.id}
+                                                                           name={dialog.name}/>)
 
-    const newMessageChangeHandler = (text: ChangeEvent<HTMLInputElement>) => props.newMessageChangeHandler(text)
+    const newMessageChangeHandler = (text: ChangeEvent<HTMLInputElement>) => props.onNewMessageChangeHandler(text)
 
     return (
         <section className={local.messagesWrap}>
             <div className={local.dialogsInner}>
                 <div className={local.friendsMessages}>
-                    { dialogsEl }
+                    {dialogsEl}
                 </div>
                 <div className={local.messagesContent}>
-                    <Conversation message={props.dialogs.messages}/>
+                    <Conversation message={props.messages}/>
                 </div>
             </div>
             <div className={local.messageInput}>
@@ -38,8 +32,9 @@ const Messages = (props: MessagesPropsType) => {
                            placeholder="Enter your message"
                     />
                 </div>
-                <BsBoxArrowInUp className={local.inputBtn}
-                                size="2em" onClick={props.addMessage}
+                <BsBoxArrowInUp onClick={() => props.onAddMessage}
+                                className={local.inputBtn}
+                                size="2em"
                 />
             </div>
         </section>

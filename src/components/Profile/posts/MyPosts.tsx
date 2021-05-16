@@ -2,14 +2,7 @@ import React, {ChangeEvent} from 'react';
 import local from './MyPosts.module.scss'
 import {BsBoxArrowInDown} from 'react-icons/bs';
 import Post from './post/Post';
-import {PostsType} from '../../../state/store';
-
-type MyPostsPropsType = {
-    posts: Array<PostsType>
-    newPost: string
-    addPost: () => void
-    newTextChangeHandler: (text: ChangeEvent<HTMLInputElement>) => void
-}
+import { MyPostsPropsType } from './MyPostsContainer';
 
 const MyPosts = (props: MyPostsPropsType) => {
 
@@ -19,7 +12,7 @@ const MyPosts = (props: MyPostsPropsType) => {
                                                   likes={post.likes}/>)
 
     const onPostChange = (text: ChangeEvent<HTMLInputElement>) => {
-        props.newTextChangeHandler(text)
+        props.onNewTextChangeHandler(text)
     }
 
     return (
@@ -32,8 +25,9 @@ const MyPosts = (props: MyPostsPropsType) => {
                            placeholder="Enter your message"
                     />
                 </div>
-                <BsBoxArrowInDown onClick={props.addPost}
-                                  className={local.inputBtn} size="2em"
+                <BsBoxArrowInDown onClick={() => props.onAddPost}
+                                  className={local.inputBtn}
+                                  size="2em"
                 />
             </div>
             {postsEl}

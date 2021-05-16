@@ -1,11 +1,21 @@
 import {v1} from 'uuid';
 import {
     AddMessageActionType,
-    AddPostActionType,
-    ChangeNewMessageActionType, ChangeNewTextActionType,
-    DialogsPageType,
-    MessageType
-} from '../store';
+    AllActionTypes,
+    ChangeNewMessageActionType
+} from '../redux_store';
+
+export type DialogsType = {
+    id: string
+    name: string
+}
+
+export type MessageType = {
+    id: string
+    text: string
+}
+
+export type InitialDialogsStateType = typeof initialState
 
 const initialState = {
     dialogs: [
@@ -29,7 +39,7 @@ const initialState = {
             id: v1(),
             name: 'Hubert J. Farnsworth'
         },
-    ],
+    ] as Array<DialogsType>,
     messages: [
         {
             id: v1(),
@@ -39,11 +49,11 @@ const initialState = {
             id: v1(),
             text: 'Hi! I\'m fine, thanks!'
         }
-    ],
+    ] as Array<MessageType>,
     newMessageText: ''
 }
 
-export const dialogsReducer = (state: DialogsPageType = initialState, action: AddPostActionType | ChangeNewTextActionType | AddMessageActionType | ChangeNewMessageActionType) => {
+export const dialogsReducer = (state: InitialDialogsStateType = initialState, action: AllActionTypes): InitialDialogsStateType => {
 
     switch (action.type) {
         case "ADD-MESSAGE":
