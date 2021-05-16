@@ -1,5 +1,4 @@
 import {v1} from 'uuid';
-import {rerenderTree} from '../index';
 import {profileReducer} from './reducers/profile_reducer';
 import {dialogsReducer} from './reducers/dialogs_reducer';
 
@@ -48,6 +47,7 @@ type StoreType = {
 
 
 
+/*
 const store: StoreType = {
     _state: {
         profilePage: {
@@ -126,4 +126,4 @@ const store: StoreType = {
 
         this._render();
     }
-}
+}*/

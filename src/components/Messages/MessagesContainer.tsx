@@ -1,9 +1,9 @@
-import React, {ChangeEvent} from 'react';
+import {ChangeEvent} from 'react';
 import {
     addMessageAC,
     changeNewMessageAC,
     DialogsType,
-    InitialDialogsStateType, MessageType
+    MessageType
 } from '../../state/reducers/dialogs_reducer';
 import Messages from './Messages';
 import {connect} from 'react-redux';
@@ -17,7 +17,7 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-    onAddMessage: (props: InitialDialogsStateType) => void
+    onAddMessage: () => void
     onNewMessageChangeHandler: (el: ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -33,8 +33,8 @@ let mapStateToProps = (state: RootStateType): MapStatePropsType => {
 
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-        onAddMessage: (props: InitialDialogsStateType) => {
-            dispatch(addMessageAC(props.newMessageText))
+        onAddMessage: () => {
+            dispatch(addMessageAC())
         },
         onNewMessageChangeHandler: (el: ChangeEvent<HTMLInputElement>) => {
             dispatch(changeNewMessageAC(el.currentTarget.value))

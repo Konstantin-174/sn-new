@@ -41,29 +41,33 @@ const initialState = {
 
 export const profileReducer = (state: InitialProfileStateType = initialState, action: AllActionTypes): InitialProfileStateType => {
     switch (action.type){
-        case "ADD-POST":
-            state.newPostText = "";
+        case "ADD-POST": {
+            let stateCopy = {...state}
+            stateCopy.posts = [...state.posts]
             const newPost: PostsType = {
                 id: v1(),
                 name: '%@User_name@%',
-                text: action.postMessage,
+                text: state.newPostText,
                 likes: 0
             }
-            state.posts.push(newPost)
-            return state;
-        case "CHANGE-NEW-TEXT":
-            state.newPostText = action.newText;
-            return state;
+            stateCopy.posts.push(newPost)
+            stateCopy.newPostText = "";
+            return stateCopy;
+        }
+        case "CHANGE-NEW-TEXT": {
+            let stateCopy = {...state}
+            stateCopy.newPostText = action.newText;
+            return stateCopy;
+        }
         default:
             return state;
     }
 }
 
 // === ACTION CREATORS ===
-export const addPostAC = (postText: string): AddPostActionType => {
+export const addPostAC = (): AddPostActionType => {
     return {
-        type: "ADD-POST",
-        postMessage: postText
+        type: "ADD-POST"
     }
 }
 

@@ -1,5 +1,9 @@
-import React, {ChangeEvent} from 'react';
-import {addPostAC, changeNewTextAC, InitialProfileStateType, PostsType} from '../../../state/reducers/profile_reducer';
+import {ChangeEvent} from 'react';
+import {
+    addPostAC,
+    changeNewTextAC,
+    PostsType
+} from '../../../state/reducers/profile_reducer';
 import MyPosts from './MyPosts';
 import {RootStateType} from '../../../state/redux_store';
 import {connect} from 'react-redux';
@@ -11,7 +15,7 @@ type MapStatePropsType = {
 }
 
 type MapDispatchPropsType = {
-    onAddPost: (props: InitialProfileStateType) => void
+    onAddPost: () => void
     onNewTextChangeHandler: (el: ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -26,8 +30,8 @@ let mapStateToProps = (state: RootStateType): MapStatePropsType => {
 
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
-        onAddPost: (props: InitialProfileStateType) => {
-            dispatch(addPostAC(props.newPostText))
+        onAddPost: () => {
+            dispatch(addPostAC())
         },
         onNewTextChangeHandler: (el: ChangeEvent<HTMLInputElement>) => {
             dispatch(changeNewTextAC(el.currentTarget.value))

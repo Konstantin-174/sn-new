@@ -32,7 +32,7 @@ const Messages = (props: MessagesPropsType) => {
                            placeholder="Enter your message"
                     />
                 </div>
-                <BsBoxArrowInUp onClick={() => props.onAddMessage}
+                <BsBoxArrowInUp onClick={props.onAddMessage} //React.DOMAttributes<T>.onClick?: React.MouseEventHandler<SVGElement>
                                 className={local.inputBtn}
                                 size="2em"
                 />

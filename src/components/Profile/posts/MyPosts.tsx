@@ -25,7 +25,7 @@ const MyPosts = (props: MyPostsPropsType) => {
                            placeholder="Enter your message"
                     />
                 </div>
-                <BsBoxArrowInDown onClick={() => props.onAddPost}
+                <BsBoxArrowInDown onClick={props.onAddPost}
                                   className={local.inputBtn}
                                   size="2em"
                 />

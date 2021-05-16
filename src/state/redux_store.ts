@@ -17,7 +17,6 @@ export type AllActionTypes = AddPostActionType |
 
 export type AddPostActionType = {
     type: 'ADD-POST'
-    postMessage: string
 }
 
 export type ChangeNewTextActionType = {
@@ -27,7 +26,6 @@ export type ChangeNewTextActionType = {
 
 export type AddMessageActionType = {
     type: 'ADD-MESSAGE'
-    message: string
 }
 
 export type ChangeNewMessageActionType = {

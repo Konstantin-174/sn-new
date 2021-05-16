@@ -56,27 +56,31 @@ const initialState = {
 export const dialogsReducer = (state: InitialDialogsStateType = initialState, action: AllActionTypes): InitialDialogsStateType => {
 
     switch (action.type) {
-        case "ADD-MESSAGE":
-            state.newMessageText = "";
+        case "ADD-MESSAGE": {
+            let stateCopy = {...state}
+            stateCopy.messages = [...state.messages]
             const newMessage: MessageType = {
                 id: v1(),
-                text: action.message
+                text: state.newMessageText
             }
-            state.messages.push(newMessage);
-            return state;
-        case "CHANGE-NEW-MESSAGE":
-            state.newMessageText = action.newMessage;
-            return state;
+            stateCopy.messages.push(newMessage);
+            stateCopy.newMessageText = "";
+            return stateCopy;
+        }
+        case "CHANGE-NEW-MESSAGE": {
+            let stateCopy = {...state}
+            stateCopy.newMessageText = action.newMessage;
+            return stateCopy;
+        }
         default:
             return state;
     }
 }
 
 // === ACTION CREATORS ===
-export const addMessageAC = (message: string): AddMessageActionType => {
+export const addMessageAC = (): AddMessageActionType => {
     return {
-        type: "ADD-MESSAGE",
-        message: message
+        type: "ADD-MESSAGE"
     }
 }
 

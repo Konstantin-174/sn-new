@@ -5,18 +5,11 @@ import {store} from './state/redux_store';
 import App from './App';
 import {Provider} from 'react-redux';
 
-export const rerenderTree = () => {
-    ReactDOM.render(
-        <React.StrictMode>
-            <Provider store={store}>
-                <App />
-            </Provider>
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
-}
-
-store.subscribe(() => {
-    rerenderTree()
-});
-rerenderTree();
+ReactDOM.render(
+    <React.StrictMode>
+        <Provider store={store}>
+            <App/>
+        </Provider>
+    </React.StrictMode>,
+    document.getElementById('root')
+);
