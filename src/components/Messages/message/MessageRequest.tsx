@@ -8,7 +8,10 @@ type MessageRequestPropsType = {
 const MessageRequest = (props: MessageRequestPropsType) => {
     return (
         <section className={local.messageWrap}>
-            {props.message}
+            <div className={local.angle}/>
+            <div className={local.message}>
+                {props.message}
+            </div>
         </section>
     )
 }

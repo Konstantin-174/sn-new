@@ -1,13 +1,23 @@
 .messageWrap {
-  margin: 5px 10px 5px 10px;
-  width: 40%;
+  display: flex;
   align-self: flex-end;
-  padding: 10px;
-  font-size: 15px;
-  background-color: #afafaf;
-  border: 1px solid transparent;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  box-shadow: 0 2px 5px #666666;
+  width: 40%;
+  justify-content: flex-end;
+
+  .message {
+    word-wrap: break-word;
+    margin: 5px 0 5px 10px;
+    padding: 10px;
+    font-size: 15px;
+    background-color: #afafaf;
+    border-radius: 10px 10px 0 10px;
+  }
+
+  .angle {
+    margin-bottom: 5px;
+    width: 10px;
+    height: 10px;
+    background: radial-gradient(circle at 10px 0, rgba(0, 0, 0, 0) 10px, #afafaf 0);
+    align-self: flex-end;
+  }
 }
