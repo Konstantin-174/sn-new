@@ -1,10 +1,12 @@
 import {combineReducers, createStore } from "redux";
 import {dialogsReducer} from './reducers/dialogs_reducer';
 import {profileReducer} from './reducers/profile_reducer';
+import {usersReducer} from './reducers/users_reducer';
 
 const rootReducer = combineReducers({
     profileReducer,
-    dialogsReducer
+    dialogsReducer,
+    usersReducer
 })
 
 export type RootStateType = ReturnType<typeof rootReducer>
@@ -13,7 +15,9 @@ export type RootStateType = ReturnType<typeof rootReducer>
 export type AllActionTypes = AddPostActionType |
     ChangeNewTextActionType |
     AddMessageActionType |
-    ChangeNewMessageActionType
+    ChangeNewMessageActionType |
+    FollowAT |
+    UnfollowAT
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -31,6 +35,16 @@ export type AddMessageActionType = {
 export type ChangeNewMessageActionType = {
     type: 'CHANGE-NEW-MESSAGE'
     newMessage: string
+}
+
+export type FollowAT = {
+    type: 'FOLLOW'
+    userID: string
+}
+
+export type UnfollowAT = {
+    type: 'UNFOLLOW'
+    userID: string
 }
 // === / ACTION TYPES ===
 

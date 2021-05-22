@@ -1,39 +1,39 @@
 import React from 'react';
-import local from './ProfileInfo.module.scss';
+import styles from './ProfileInfo.module.scss';
 
-const ProfileInfo = () => {
+const ProfileInfo: React.FC = () => {
     return (
-        <section className={local.infoWrap}>
-            <div className={local.infoItem}>
-                <div className={local.itemTitle}>
+        <section className={styles.infoWrap}>
+            <div className={styles.infoItem}>
+                <div className={styles.itemTitle}>
                     Name
                 </div>
-                <div className={local.itemDescription}>
+                <div className={styles.itemDescription}>
                     Bender Rodriguez
                 </div>
             </div>
-            <div className={local.infoItem}>
-                <div className={local.itemTitle}>
+            <div className={styles.infoItem}>
+                <div className={styles.itemTitle}>
                     Birth
                 </div>
-                <div className={local.itemDescription}>
+                <div className={styles.itemDescription}>
                     10/11/1989
                 </div>
             </div>
-            <div className={local.infoItem}>
-                <div className={local.itemTitle}>
+            <div className={styles.infoItem}>
+                <div className={styles.itemTitle}>
                     Education
                 </div>
-                <div className={local.itemDescription}>
+                <div className={styles.itemDescription}>
                     University degree
                 </div>
             </div>
-            <div className={local.infoItem}>
-                <div className={local.itemTitle}>
+            <div className={styles.infoItem}>
+                <div className={styles.itemTitle}>
                     Quotes
                 </div>
-                <div className={local.itemDescription}>
-                    <div className={local.descriptionText}>
+                <div className={styles.itemDescription}>
+                    <div className={styles.descriptionText}>
                         "I'm going to build my own theme park! With blackjack! And hookers!"
                     </div>
                 </div>

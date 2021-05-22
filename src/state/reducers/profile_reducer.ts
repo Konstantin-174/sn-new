@@ -50,7 +50,7 @@ export const profileReducer = (state: InitialProfileStateType = initialState, ac
                 text: state.newPostText,
                 likes: 0
             }
-            stateCopy.posts.push(newPost)
+            stateCopy.posts.unshift(newPost)
             stateCopy.newPostText = "";
             return stateCopy;
         }

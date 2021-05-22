@@ -1,5 +1,5 @@
 import {NavLink} from 'react-router-dom';
-import local from './Messages.module.scss';
+import styles from './Messages.module.scss';
 import React from 'react';
 
 type DialogsLinkPropsType = {
@@ -7,13 +7,14 @@ type DialogsLinkPropsType = {
     name: string
 }
 
-const DialogLink = (props: DialogsLinkPropsType) => {
+const DialogLink: React.FC<DialogsLinkPropsType> = ({name,
+                                                        id}) => {
     return (
-        <NavLink to={'/messages/conversation/' + props.id}
-                 className={local.messagesLink}
-                 activeClassName={local.active}
+        <NavLink to={'/messages/conversation/' + id}
+                 className={styles.messagesLink}
+                 activeClassName={styles.active}
         >
-            <div className={local.linkTitle}>{props.name}</div>
+            <div className={styles.linkTitle}>{name}</div>
         </NavLink>
     )
 }

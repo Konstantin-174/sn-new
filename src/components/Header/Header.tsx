@@ -1,14 +1,14 @@
 import React from 'react';
-import local from './Header.module.scss';
+import styles from './Header.module.scss';
 import {DiLinux} from "react-icons/di";
 
-const Header = () => {
+const Header: React.FC = () => {
     return (
-        <header className={local.headerWrap}>
-            <a href="#" className={local.headLogo}>
-                <DiLinux className={local.logo} size="2em" />
+        <header className={styles.headerWrap}>
+            <a href="#" className={styles.headLogo}>
+                <DiLinux className={styles.logo} size="2em" />
             </a>
-            <div className={local.headContent}>Welcome to my SocialNetwork</div>
+            <div className={styles.headContent}>Welcome to my SocialNetwork</div>
         </header>
     )
 }

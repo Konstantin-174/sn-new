@@ -1,17 +1,17 @@
 import React from 'react';
-import local from './MessageResponse.module.scss';
+import styles from './MessageResponse.module.scss';
 
 type MessageResponsePropsType = {
     message: string
 }
 
-const MessageResponse = (props: MessageResponsePropsType) => {
+const MessageResponse: React.FC<MessageResponsePropsType> = ({message}) => {
     return (
-        <section className={local.messageWrap}>
-            <div className={local.message}>
-                {props.message}
+        <section className={styles.messageWrap}>
+            <div className={styles.message}>
+                {message}
             </div>
-            <div className={local.angle}/>
+            <div className={styles.angle}/>
         </section>
     )
 }

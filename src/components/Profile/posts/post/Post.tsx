@@ -1,5 +1,5 @@
 import React from 'react';
-import local from './Post.module.scss';
+import styles from './Post.module.scss';
 import img from './img/ghML0mY_.jpg';
 import { AiFillLike } from "react-icons/ai";
 
@@ -9,24 +9,26 @@ type PostType = {
     likes: number
 }
 
-const Post = (props: PostType) => {
+const Post: React.FC<PostType> = ({name,
+                                      text,
+                                      likes}) => {
     return (
-        <section className={local.postWrap}>
-            <div className={local.postAutor}>
-                {props.name}
+        <section className={styles.postWrap}>
+            <div className={styles.postAutor}>
+                {name}
             </div>
-            <div className={local.postContent}>
-                <div className={local.ava}>
+            <div className={styles.postContent}>
+                <div className={styles.ava}>
                     <img src={img} alt="Avatar"/>
                 </div>
-                <div className={local.postText}>
-                    &#8220;{props.text}&#8221;
+                <div className={styles.postText}>
+                    &#8220;{text}&#8221;
                 </div>
             </div>
-            <div className={local.postLikes}>
-                <AiFillLike className={local.likeIcon}/>
-                <div className={local.likesCount}>
-                    {props.likes}
+            <div className={styles.postLikes}>
+                <AiFillLike className={styles.likeIcon}/>
+                <div className={styles.likesCount}>
+                    {likes}
                 </div>
             </div>
         </section>

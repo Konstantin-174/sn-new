@@ -1,32 +1,35 @@
 import React, {ChangeEvent} from 'react';
-import local from './MyPosts.module.scss'
+import styles from './MyPosts.module.scss'
 import {BsBoxArrowInDown} from 'react-icons/bs';
 import Post from './post/Post';
 import { MyPostsPropsType } from './MyPostsContainer';
 
-const MyPosts = (props: MyPostsPropsType) => {
+const MyPosts: React.FC<MyPostsPropsType> = ({posts,
+                                                 newPost,
+                                                 onAddPost,
+                                                 onNewTextChangeHandler}) => {
 
-    let postsEl = props.posts.map((post) => <Post key={post.id}
+    let postsEl = posts.map((post) => <Post key={post.id}
                                                   name={post.name}
                                                   text={post.text}
                                                   likes={post.likes}/>)
 
     const onPostChange = (text: ChangeEvent<HTMLInputElement>) => {
-        props.onNewTextChangeHandler(text)
+        onNewTextChangeHandler(text)
     }
 
     return (
-        <section className={local.postsWrap}>
-            <div className={local.inputPost}>
-                <div className={local.inputArea}>
+        <section className={styles.postsWrap}>
+            <div className={styles.inputPost}>
+                <div className={styles.inputArea}>
                     <input type="text"
-                           value={props.newPost}
+                           value={newPost}
                            onChange={onPostChange}
                            placeholder="Enter your message"
                     />
                 </div>
-                <BsBoxArrowInDown onClick={props.onAddPost}
-                                  className={local.inputBtn}
+                <BsBoxArrowInDown onClick={onAddPost}
+                                  className={styles.inputBtn}
                                   size="2em"
                 />
             </div>
