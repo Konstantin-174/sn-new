@@ -6,6 +6,7 @@ import {
 } from '../redux_store';
 
 export type UserType = {
+    image: string
     id: string
     followed: boolean
     fullName: string
@@ -23,11 +24,28 @@ export type InitialUsersStateType = typeof InitialState
 const InitialState = {
     users: [
         {
+            image: 'https://static.wikia.nocookie.net/futurama/images/1/10/Leela.jpg/revision/latest/scale-to-width-down/250?cb=20141220211651&path-prefix=ru',
             id: v1(),
             followed: false,
             status: 'Never give up!',
-            fullName: 'Philip J. Fry',
-            location: {city: 'Brooklyn', country: 'USA'}
+            fullName: 'Turanga Leela',
+            location: {city: 'Old New York', country: 'USA'}
+        },
+        {
+            image: 'https://static.wikia.nocookie.net/futurama/images/0/0a/Zoidberg_rev.jpg/revision/latest/scale-to-width-down/250?cb=20130722200511&path-prefix=ru',
+            id: v1(),
+            followed: false,
+            status: 'Whoop! Whoop! Whoop! Whoop! Whoop!',
+            fullName: 'John D. Zoidberg',
+            location: {city: 'Noname', country: 'Decapod 10'}
+        },
+        {
+            image: 'https://static.wikia.nocookie.net/futurama/images/2/28/Amy_rev.jpg/revision/latest/scale-to-width-down/250?cb=20130722200517&path-prefix=ru',
+            id: v1(),
+            followed: false,
+            status: 'Ok Fry, we\'re done putting on the bra!',
+            fullName: 'Amy Wong',
+            location: {city: 'New York', country: 'USA'}
         }
     ] as Array<UserType>
 }
