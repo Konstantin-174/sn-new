@@ -7,11 +7,13 @@ type PostType = {
     name: string
     text: string
     likes: number
+    image: string
 }
 
 const Post: React.FC<PostType> = ({name,
                                       text,
-                                      likes}) => {
+                                      likes,
+                                      image}) => {
     return (
         <section className={styles.postWrap}>
             <div className={styles.postAutor}>
@@ -19,7 +21,7 @@ const Post: React.FC<PostType> = ({name,
             </div>
             <div className={styles.postContent}>
                 <div className={styles.ava}>
-                    <img src={img} alt="Avatar"/>
+                    <img src={image} alt="Avatar"/>
                 </div>
                 <div className={styles.postText}>
                     &#8220;{text}&#8221;

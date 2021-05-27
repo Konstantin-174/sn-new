@@ -2,17 +2,20 @@ import React, {ChangeEvent} from 'react';
 import styles from './MyPosts.module.scss'
 import {BsBoxArrowInDown} from 'react-icons/bs';
 import Post from './post/Post';
-import { MyPostsPropsType } from './MyPostsContainer';
+import {MyPostsPropsType} from './MyPostsContainer';
 
-const MyPosts: React.FC<MyPostsPropsType> = ({posts,
+const MyPosts: React.FC<MyPostsPropsType> = ({
+                                                 posts,
                                                  newPost,
                                                  onAddPost,
-                                                 onNewTextChangeHandler}) => {
+                                                 onNewTextChangeHandler
+                                             }) => {
 
     let postsEl = posts.map((post) => <Post key={post.id}
-                                                  name={post.name}
-                                                  text={post.text}
-                                                  likes={post.likes}/>)
+                                            name={post.name}
+                                            text={post.text}
+                                            likes={post.likes}
+                                            image={post.image}/>)
 
     const onPostChange = (text: ChangeEvent<HTMLInputElement>) => {
         onNewTextChangeHandler(text)

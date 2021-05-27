@@ -2,20 +2,22 @@ import React from 'react';
 import styles from './Users.module.scss';
 import {UsersPropsType} from './UsersContainer';
 
-export const Users: React.FC<UsersPropsType> = ({users}) => {
+export const Users: React.FC<UsersPropsType> = ({users,
+                                                    follow,
+                                                    unfollow}) => {
     return (
         <section className={styles.usersWrap}>
             {
                 users.map(u => (
-                    <section className={styles.innerWrap}>
+                    <section className={styles.innerWrap} key={u.id}>
                         <div className={styles.avaWrap}>
                             <div className={styles.avaImg}>
                                 <img className={styles.ava} src={u.image} alt="Avatar"/>
                             </div>
                             <div className={styles.avaSettings}>
-                                <button className={styles.avaBtn}>
-                                    Edit
-                                </button>
+                                {u.followed
+                                    ? <button className={styles.avaBtn} onClick={() => {follow(u.id)}}>Follow</button>
+                                    : <button className={styles.avaBtn} onClick={() => {unfollow(u.id)}}>Unfollow</button>}
                             </div>
                         </div>
                         <div className={styles.userInfoWrap}>

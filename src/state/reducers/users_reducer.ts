@@ -26,7 +26,7 @@ const InitialState = {
         {
             image: 'https://static.wikia.nocookie.net/futurama/images/1/10/Leela.jpg/revision/latest/scale-to-width-down/250?cb=20141220211651&path-prefix=ru',
             id: v1(),
-            followed: false,
+            followed: true,
             status: 'Never give up!',
             fullName: 'Turanga Leela',
             location: {city: 'Old New York', country: 'USA'}
@@ -76,17 +76,24 @@ export const usersReducer = (state: InitialUsersStateType = InitialState, action
 }
 
 // === ACTION CREATORS ===
-export const FollowAC = (): FollowAT => {
+export const FollowAC = (userID: string): FollowAT => {
     return {
         type: 'FOLLOW',
         userID: v1()
     }
 }
 
-export const UnfollowAC = (): UnfollowAT => {
+export const UnfollowAC = (userID: string): UnfollowAT => {
     return {
         type: 'UNFOLLOW',
         userID: v1()
     }
 }
+
+// export const setUsersAC = (users: Array<UserType>) => {
+//     return {
+//         type: 'SET-USERS'
+//         users
+//     }
+// }
 // === / ACTION CREATORS ===
