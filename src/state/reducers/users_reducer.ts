@@ -24,7 +24,7 @@ export type InitialUsersStateType = typeof InitialState
 const InitialState = {
     users: [
         {
-            image: 'https://static.wikia.nocookie.net/futurama/images/1/10/Leela.jpg/revision/latest/scale-to-width-down/250?cb=20141220211651&path-prefix=ru',
+            image: 'https://tridigital.wpengine.com/wp-content/uploads/2014/10/Turanga-Leela-Cartoon-Anime.jpg',
             id: v1(),
             followed: true,
             status: 'Never give up!',
@@ -32,7 +32,7 @@ const InitialState = {
             location: {city: 'Old New York', country: 'USA'}
         },
         {
-            image: 'https://static.wikia.nocookie.net/futurama/images/0/0a/Zoidberg_rev.jpg/revision/latest/scale-to-width-down/250?cb=20130722200511&path-prefix=ru',
+            image: 'https://i.pinimg.com/736x/bb/4f/45/bb4f4529f8d7d3d60aa6fb3096b94ee6--futurama-why-not.jpg',
             id: v1(),
             followed: false,
             status: 'Whoop! Whoop! Whoop! Whoop! Whoop!',
@@ -40,7 +40,7 @@ const InitialState = {
             location: {city: 'Noname', country: 'Decapod 10'}
         },
         {
-            image: 'https://static.wikia.nocookie.net/futurama/images/2/28/Amy_rev.jpg/revision/latest/scale-to-width-down/250?cb=20130722200517&path-prefix=ru',
+            image: 'http://oyster.ignimgs.com/mediawiki/apis.ign.com/futurama/d/d5/AmyWong.jpg',
             id: v1(),
             followed: false,
             status: 'Ok Fry, we\'re done putting on the bra!',
