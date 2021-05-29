@@ -16,8 +16,8 @@ export const Users: React.FC<UsersPropsType> = ({users,
                             </div>
                             <div className={styles.avaSettings}>
                                 {u.followed
-                                    ? <button className={styles.avaBtn} onClick={() => {follow(u.id)}}>Follow</button>
-                                    : <button className={styles.avaBtn} onClick={() => {unfollow(u.id)}}>Unfollow</button>}
+                                    ? <button className={styles.avaBtn} onClick={() => {unfollow(u.id)}}>Unfollow</button>
+                                    : <button className={styles.avaBtn} onClick={() => {follow(u.id)}}>Follow</button>}
                             </div>
                         </div>
                         <div className={styles.userInfoWrap}>

@@ -79,14 +79,14 @@ export const usersReducer = (state: InitialUsersStateType = InitialState, action
 export const FollowAC = (userID: string): FollowAT => {
     return {
         type: 'FOLLOW',
-        userID: v1()
+        userID: userID
     }
 }
 
 export const UnfollowAC = (userID: string): UnfollowAT => {
     return {
         type: 'UNFOLLOW',
-        userID: v1()
+        userID: userID
     }
 }
 
