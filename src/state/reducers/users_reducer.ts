@@ -1,22 +1,35 @@
-import {v1} from 'uuid';
 import {
     AllActionTypes,
     FollowAT, SetUsersAT,
     UnfollowAT
 } from '../redux_store';
 
+// export type UserType = {
+//     image: string
+//     id: string
+//     followed: boolean
+//     fullName: string
+//     status: string
+//     location: LocationType
+// }
+
+// export type LocationType = {
+//     city: string
+//     country: string
+// }
+
 export type UserType = {
-    image: string
-    id: string
+    name: string
+    id: number
+    uniqueUrlName: null | string
+    photos: PhotosType
+    status: null | string
     followed: boolean
-    fullName: string
-    status: string
-    location: LocationType
 }
 
-export type LocationType = {
-    city: string
-    country: string
+type PhotosType = {
+    small: null | string
+    large: null | string
 }
 
 export type InitialUsersStateType = typeof InitialState
@@ -53,14 +66,14 @@ export const usersReducer = (state: InitialUsersStateType = InitialState, action
 }
 
 // === ACTION CREATORS ===
-export const FollowAC = (userID: string): FollowAT => {
+export const FollowAC = (userID: number): FollowAT => {
     return {
         type: 'FOLLOW',
         userID: userID
     }
 }
 
-export const UnfollowAC = (userID: string): UnfollowAT => {
+export const UnfollowAC = (userID: number): UnfollowAT => {
     return {
         type: 'UNFOLLOW',
         userID: userID

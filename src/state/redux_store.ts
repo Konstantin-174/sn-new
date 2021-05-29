@@ -40,12 +40,12 @@ export type ChangeNewMessageActionType = {
 
 export type FollowAT = {
     type: 'FOLLOW'
-    userID: string
+    userID: number
 }
 
 export type UnfollowAT = {
     type: 'UNFOLLOW'
-    userID: string
+    userID: number
 }
 
 export type SetUsersAT = {
