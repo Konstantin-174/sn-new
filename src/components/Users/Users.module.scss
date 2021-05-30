@@ -2,7 +2,29 @@
 
 .usersWrap {
   margin-bottom: 10px;
+
+  .getBtn {
+    @include Roboto_Mono;
+
+    margin: 10px 0 10px 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    width: 120px;
+    font-size: 15px;
+    color: #33FF00;
+    background-color: #4c5866;
+    border: 1px solid #464646;
+    border-radius: 10px;
+    transition: .3s;
+    text-transform: uppercase;
+
+    &:hover {
+      color: #99CC33;
+      background-color: darken(#4c5866, 3%);
+    }
+  }
 }
+
 
 .innerWrap {
   display: flex;
