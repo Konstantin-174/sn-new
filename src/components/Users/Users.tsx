@@ -6,7 +6,13 @@ import axios from 'axios';
 
 class Users extends React.Component<UsersPropsType> {
 
-    getUsers = () => {
+    /*getUsers = () => {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            this.props.setUsers(response.data.items)
+        })
+    }*/
+
+    componentDidMount() {
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
             this.props.setUsers(response.data.items)
         })
@@ -15,7 +21,7 @@ class Users extends React.Component<UsersPropsType> {
     render () {
         return (
             <section className={styles.usersWrap}>
-                <button onClick={this.getUsers} className={styles.getBtn}>Get Users</button>
+                {/*<button onClick={this.getUsers} className={styles.getBtn}>Get Users</button>*/}
                 {
                     this.props.users.map(u => (
                         <section className={styles.innerWrap} key={u.id}>
