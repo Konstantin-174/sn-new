@@ -4,6 +4,64 @@ import {UsersPropsType} from './UsersContainer';
 import img from '../Users/images/nonameUser.jpg'
 import axios from 'axios';
 
+class Users extends React.Component<UsersPropsType> {
+
+    getUsers = () => {
+        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+            this.props.setUsers(response.data.items)
+        })
+    }
+
+    render () {
+        return (
+            <section className={styles.usersWrap}>
+                <button onClick={this.getUsers} className={styles.getBtn}>Get Users</button>
+                {
+                    this.props.users.map(u => (
+                        <section className={styles.innerWrap} key={u.id}>
+                            <div className={styles.avaWrap}>
+                                <div className={styles.avaImg}>
+                                    <img className={styles.ava} src={img} alt="Avatar"/>
+                                </div>
+                                <div className={styles.avaSettings}>
+                                    {u.followed
+                                        ? <button className={styles.avaBtn} onClick={() => {
+                                            this.props.unfollow(u.id)
+                                        }}>Unfollow</button>
+                                        : <button className={styles.avaBtn} onClick={() => {
+                                            this.props.follow(u.id)
+                                        }}>Follow</button>}
+                                </div>
+                            </div>
+                            <div className={styles.userInfoWrap}>
+                                <div className={styles.user}>
+                                    <div className={styles.userName}>
+                                        {u.name}
+                                    </div>
+                                    <div className={styles.userStatus}>
+                                        &#8220;{u.status}&#8221;
+                                    </div>
+                                </div>
+                                <div className={styles.location}>
+                                    <div className={styles.country}>
+                                        country
+                                    </div>
+                                    <div className={styles.city}>
+                                        city
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    ))
+                }
+            </section>
+        )
+    }
+}
+
+export default Users;
+
+/*
 export const Users: React.FC<UsersPropsType> = ({
                                                     users,
                                                     follow,
@@ -61,4 +119,4 @@ export const Users: React.FC<UsersPropsType> = ({
             }
         </section>
     )
-}
+}*/
