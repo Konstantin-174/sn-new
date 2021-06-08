@@ -6,28 +6,49 @@ import axios from 'axios';
 
 class Users extends React.Component<UsersPropsType> {
 
-    /*getUsers = () => {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-            this.props.setUsers(response.data.items)
-        })
-    }*/
-
     componentDidMount() {
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-            this.props.setUsers(response.data.items)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pagesSize}`)
+            .then(response => {
+            this.props.setUsers(response.data.items);
+            this.props.setTotalUsersCount(response.data.totalCount);
         })
     }
 
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pagesSize}`)
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            })
+    }
+
     render () {
+
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pagesSize)
+
+        let pages = []
+        for (let i = 1; i <= pagesCount; i++) {
+            pages.push(i)
+        }
+
         return (
             <section className={styles.usersWrap}>
-                {/*<button onClick={this.getUsers} className={styles.getBtn}>Get Users</button>*/}
+                <div>
+                    {pages.map(p => {
+                        return <span className={this.props.currentPage === p ? styles.selectedPage : ""}
+                                     onClick={() => this.onPageChanged(p)}>{p}</span>
+                    })}
+                </div>
                 {
                     this.props.users.map(u => (
-                        <section className={styles.innerWrap} key={u.id}>
+                        <section key={u.id}
+                                 className={styles.innerWrap}>
                             <div className={styles.avaWrap}>
                                 <div className={styles.avaImg}>
-                                    <img className={styles.ava} src={img} alt="Avatar"/>
+                                    <img className={styles.ava}
+                                         src={u.photos.large === null ? img : u.photos.large}
+                                         alt="Avatar"
+                                    />
                                 </div>
                                 <div className={styles.avaSettings}>
                                     {u.followed

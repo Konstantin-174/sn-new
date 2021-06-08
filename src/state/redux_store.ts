@@ -19,6 +19,8 @@ export type AllActionTypes = AddPostActionType
     | FollowAT
     | UnfollowAT
     | SetUsersAT
+    | SetCurrentPageAT
+    | SetTotalUsersCountAT
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -51,6 +53,16 @@ export type UnfollowAT = {
 export type SetUsersAT = {
     type: 'SET-USERS'
     users: Array<UserType>
+}
+
+export type SetCurrentPageAT = {
+    type: 'SET-CURRENT-PAGE'
+    currentPage: number
+}
+
+export type SetTotalUsersCountAT = {
+    type: 'SET-TOTAL-USERS-COUNT'
+    count: number
 }
 // === / ACTION TYPES ===
 

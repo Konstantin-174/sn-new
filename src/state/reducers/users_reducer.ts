@@ -1,22 +1,8 @@
 import {
     AllActionTypes,
-    FollowAT, SetUsersAT,
+    FollowAT, SetCurrentPageAT, SetTotalUsersCountAT, SetUsersAT,
     UnfollowAT
 } from '../redux_store';
-
-// export type UserType = {
-//     image: string
-//     id: string
-//     followed: boolean
-//     fullName: string
-//     status: string
-//     location: LocationType
-// }
-
-// export type LocationType = {
-//     city: string
-//     country: string
-// }
 
 export type UserType = {
     name: string
@@ -35,7 +21,10 @@ type PhotosType = {
 export type InitialUsersStateType = typeof InitialState
 
 const InitialState = {
-    users: [] as Array<UserType>
+    users: [] as Array<UserType>,
+    pagesSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 export const usersReducer = (state: InitialUsersStateType = InitialState, action: AllActionTypes): InitialUsersStateType => {
@@ -60,6 +49,10 @@ export const usersReducer = (state: InitialUsersStateType = InitialState, action
             }
         case 'SET-USERS':
             return {...state, users: action.users}
+        case 'SET-CURRENT-PAGE':
+            return {...state, currentPage: action.currentPage}
+        case 'SET-TOTAL-USERS-COUNT':
+            return {...state, totalUsersCount: action.count}
         default:
             return state
     }
@@ -84,6 +77,20 @@ export const setUsersAC = (users: Array<UserType>): SetUsersAT => {
     return {
         type: 'SET-USERS',
         users
+    }
+}
+
+export const setCurrentPageAC = (currentPage: number): SetCurrentPageAT => {
+    return {
+     type: 'SET-CURRENT-PAGE',
+     currentPage
+    }
+}
+
+export const setTotalUsersCountAC = (count: number): SetTotalUsersCountAT => {
+    return {
+        type: 'SET-TOTAL-USERS-COUNT',
+        count
     }
 }
 // === / ACTION CREATORS ===
