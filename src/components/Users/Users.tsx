@@ -33,7 +33,7 @@ class Users extends React.Component<UsersPropsType> {
 
         return (
             <section className={styles.usersWrap}>
-                <div>
+                <div className={styles.pagesWrap}>
                     {pages.map(p => {
                         return <span className={this.props.currentPage === p ? styles.selectedPage : ""}
                                      onClick={() => this.onPageChanged(p)}>{p}</span>

@@ -25,9 +25,14 @@
   }
 }
 
-.selectedPage {
-  font-size: larger;
-  font-weight: bolder;
+.pagesWrap {
+  width: 300px;
+  overflow: hidden;
+
+  .selectedPage {
+    font-size: larger;
+    font-weight: bolder;
+  }
 }
 
 
@@ -98,6 +103,7 @@
           color: #99CC33;
         }
       }
+
       .userStatus {
         margin-left: 20px;
         font-weight: lighter;
@@ -114,6 +120,7 @@
       .country {
         text-align: right;
       }
+
       .city {
         text-align: right;
       }
