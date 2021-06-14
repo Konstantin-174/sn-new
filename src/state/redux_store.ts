@@ -21,6 +21,7 @@ export type AllActionTypes = AddPostActionType
     | SetUsersAT
     | SetCurrentPageAT
     | SetTotalUsersCountAT
+    | ToggleIsFetchingAT
 
 export type AddPostActionType = {
     type: 'ADD-POST'
@@ -63,6 +64,11 @@ export type SetCurrentPageAT = {
 export type SetTotalUsersCountAT = {
     type: 'SET-TOTAL-USERS-COUNT'
     count: number
+}
+
+export type ToggleIsFetchingAT = {
+    type: 'TOGGLE-IS-FETCHING'
+    isFetching: boolean
 }
 // === / ACTION TYPES ===
 

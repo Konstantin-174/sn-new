@@ -34,7 +34,8 @@ export const UsersFC: React.FC<UsersFCPropsType> = ({
         <section className={styles.usersWrap}>
             <div className={styles.pagesWrap}>
                 {pages.map(p => {
-                    return <span className={currentPage === p ? styles.selectedPage : ''}
+                    return <span style={{marginLeft: "5px"}}
+                                 className={currentPage === p ? styles.selectedPage : ''}
                                  onClick={() => onPageChanged(p)}>{p}</span>
                 })}
             </div>

@@ -1,6 +1,6 @@
 import {
     AllActionTypes,
-    FollowAT, SetCurrentPageAT, SetTotalUsersCountAT, SetUsersAT,
+    FollowAT, SetCurrentPageAT, SetTotalUsersCountAT, SetUsersAT, ToggleIsFetchingAT,
     UnfollowAT
 } from '../redux_store';
 
@@ -24,7 +24,8 @@ const InitialState = {
     users: [] as Array<UserType>,
     pagesSize: 5,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: true
 }
 
 export const usersReducer = (state: InitialUsersStateType = InitialState, action: AllActionTypes): InitialUsersStateType => {
@@ -53,6 +54,8 @@ export const usersReducer = (state: InitialUsersStateType = InitialState, action
             return {...state, currentPage: action.currentPage}
         case 'SET-TOTAL-USERS-COUNT':
             return {...state, totalUsersCount: action.count}
+        case 'TOGGLE-IS-FETCHING':
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
@@ -93,4 +96,13 @@ export const setTotalUsersCountAC = (count: number): SetTotalUsersCountAT => {
         count
     }
 }
+
+export const toggleIsFetchingAC = (isFetching: boolean): ToggleIsFetchingAT => {
+    return {
+        type: 'TOGGLE-IS-FETCHING',
+        isFetching
+    }
+}
+
+
 // === / ACTION CREATORS ===
