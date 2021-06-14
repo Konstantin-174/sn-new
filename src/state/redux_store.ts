@@ -12,10 +12,10 @@ const rootReducer = combineReducers({
 export type RootStateType = ReturnType<typeof rootReducer>
 
 // === ACTION TYPES ===
-export type AllActionTypes = AddPostActionType
-    | ChangeNewTextActionType
-    | AddMessageActionType
-    | ChangeNewMessageActionType
+export type AllActionTypes = AddPostAT
+    | ChangeNewTextAT
+    | AddMessageAT
+    | ChangeNewMessageAT
     | FollowAT
     | UnfollowAT
     | SetUsersAT
@@ -23,20 +23,20 @@ export type AllActionTypes = AddPostActionType
     | SetTotalUsersCountAT
     | ToggleIsFetchingAT
 
-export type AddPostActionType = {
+export type AddPostAT = {
     type: 'ADD-POST'
 }
 
-export type ChangeNewTextActionType = {
+export type ChangeNewTextAT = {
     type: 'CHANGE-NEW-TEXT'
     newText: string
 }
 
-export type AddMessageActionType = {
+export type AddMessageAT = {
     type: 'ADD-MESSAGE'
 }
 
-export type ChangeNewMessageActionType = {
+export type ChangeNewMessageAT = {
     type: 'CHANGE-NEW-MESSAGE'
     newMessage: string
 }

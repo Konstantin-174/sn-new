@@ -18,7 +18,7 @@ function App() {
                     <Switch>
                         <Route path="/profile" render={() => <Profile />}/>
                         <Route path="/messages" render={() => <MessagesContainer/>}/>
-                        <Route path="/friends" render={() => <UsersContainer/>}/>
+                        <Route path="/friends" render={() => <UsersContainer />}/>
                         <Redirect to="/profile"/>
                     </Switch>
                 </section>

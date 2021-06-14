@@ -46,7 +46,7 @@ export const UsersFC: React.FC<UsersFCPropsType> = ({
                         <div className={styles.avaWrap}>
                             <div className={styles.avaImg}>
                                 <img className={styles.ava}
-                                     src={u.photos.large === null ? img : u.photos.large}
+                                     src={u.photos.small === null ? img : u.photos.small}
                                      alt="Avatar"
                                 />
                             </div>

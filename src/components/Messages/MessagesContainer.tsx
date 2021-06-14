@@ -1,14 +1,14 @@
 import {ChangeEvent} from 'react';
 import {
-    addMessageAC,
-    changeNewMessageAC,
+    addMessage,
+    changeNewMessage,
     DialogsType,
     MessageType
 } from '../../state/reducers/dialogs_reducer';
 import Messages from './Messages';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../state/redux_store';
-import { Dispatch } from 'redux';
+import {Dispatch} from 'redux';
 
 type MapStatePropsType = {
     newMessage: string
@@ -34,13 +34,13 @@ let mapStateToProps = (state: RootStateType): MapStatePropsType => {
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchPropsType => {
     return {
         onAddMessage: () => {
-            dispatch(addMessageAC())
+            dispatch(addMessage())
         },
         onNewMessageChangeHandler: (el: ChangeEvent<HTMLInputElement>) => {
-            dispatch(changeNewMessageAC(el.currentTarget.value))
+            dispatch(changeNewMessage(el.currentTarget.value))
         }
     }
 }
 
-export const MessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages);
+export const MessagesContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateType>(mapStateToProps, mapDispatchToProps)(Messages);
 

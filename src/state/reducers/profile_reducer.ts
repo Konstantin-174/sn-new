@@ -1,8 +1,8 @@
 import {v1} from 'uuid';
 import {
-    AddPostActionType,
+    AddPostAT,
     AllActionTypes,
-    ChangeNewTextActionType
+    ChangeNewTextAT
 } from '../redux_store';
 
 export type PostsType = {
@@ -70,13 +70,13 @@ export const profileReducer = (state: InitialProfileStateType = initialState, ac
 }
 
 // === ACTION CREATORS ===
-export const addPostAC = (): AddPostActionType => {
+export const addPostAC = (): AddPostAT => {
     return {
         type: "ADD-POST"
     }
 }
 
-export const changeNewTextAC = (newText: string): ChangeNewTextActionType => {
+export const changeNewTextAC = (newText: string): ChangeNewTextAT => {
     return {
         type: "CHANGE-NEW-TEXT",
         newText: newText
