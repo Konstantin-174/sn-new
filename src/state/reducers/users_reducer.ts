@@ -13,9 +13,9 @@ export type UserType = {
     followed: boolean
 }
 
-type PhotosType = {
-    small: null | string
-    large: null | string
+export type PhotosType = {
+    small: undefined | string
+    large: undefined | string
 }
 
 export type InitialUsersStateType = typeof InitialState

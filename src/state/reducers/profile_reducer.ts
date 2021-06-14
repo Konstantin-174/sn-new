@@ -2,8 +2,30 @@ import {v1} from 'uuid';
 import {
     AddPostAT,
     AllActionTypes,
-    ChangeNewTextAT
+    ChangeNewTextAT, SetUserProfileAT
 } from '../redux_store';
+import {PhotosType} from './users_reducer';
+
+export type UserProfileType = {
+    aboutMe: string
+    contacts: ContactsType
+    lookingForAJob: boolean
+    lookingForAJobDescription: string | null
+    fullName: string
+    userId: number
+    photos: PhotosType
+}
+
+type ContactsType = {
+    facebook: string | null
+    website: string | null
+    vk: string | null
+    twitter: string | null
+    instagram: string | null
+    youtube: string | null
+    github: string | null
+    mainLink: string | null
+}
 
 export type PostsType = {
     image: string
@@ -39,7 +61,8 @@ const initialState = {
             likes: 24
         },
     ] as Array<PostsType>,
-        newPostText: ''
+        newPostText: '',
+    profile: {} as UserProfileType
 }
 
 
@@ -64,6 +87,9 @@ export const profileReducer = (state: InitialProfileStateType = initialState, ac
             stateCopy.newPostText = action.newText;
             return stateCopy;
         }
+        case "SET-USER-PROFILE": {
+            return {...state, profile: action.profile}
+        }
         default:
             return state;
     }
@@ -80,6 +106,13 @@ export const changeNewTextAC = (newText: string): ChangeNewTextAT => {
     return {
         type: "CHANGE-NEW-TEXT",
         newText: newText
+    }
+}
+
+export const setUserProfile = (profile: UserProfileType): SetUserProfileAT => {
+    return {
+        type: "SET-USER-PROFILE",
+        profile
     }
 }
 

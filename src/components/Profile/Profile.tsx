@@ -3,12 +3,23 @@ import styles from './Profile.module.scss'
 import Avatar from './avatar/Avatar';
 import ProfileInfo from './profileInfo/ProfileInfo';
 import {MyPostsContainer} from './posts/MyPostsContainer';
+import {UserProfileType} from '../../state/reducers/profile_reducer';
+import {PreloaderSVG} from '../../common/Preloader/PreloaderSVG';
 
-const Profile: React.FC = () => {
+type ProfilePropsType = {
+    profile: UserProfileType
+}
+
+const Profile: React.FC<ProfilePropsType> = ({profile}) => {
+
+    if (!profile.photos) {
+        return <PreloaderSVG/>
+    }
+
     return (
         <section className={styles.profileWrap}>
           <div className={styles.avaDiscript}>
-              <Avatar/>
+              <Avatar photos={profile.photos}/>
               <ProfileInfo />
           </div>
             <MyPostsContainer />

@@ -5,7 +5,8 @@ import {
     follow,
     setCurrentPage,
     setTotalUsersCount,
-    setUsers, toggleIsFetching,
+    setUsers,
+    toggleIsFetching,
     unfollow,
     UserType
 } from '../../state/reducers/users_reducer';
@@ -30,7 +31,7 @@ type MapDispatchPropsType = {
     toggleIsFetching: (isFetching: boolean) => void
 }
 
-export type UsersPropsType = MapStatePropsType & MapDispatchPropsType
+type UsersPropsType = MapStatePropsType & MapDispatchPropsType
 
 class Users extends React.Component<UsersPropsType> {
 

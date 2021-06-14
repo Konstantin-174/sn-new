@@ -1,6 +1,6 @@
 import {combineReducers, createStore } from "redux";
 import {dialogsReducer} from './reducers/dialogs_reducer';
-import {profileReducer} from './reducers/profile_reducer';
+import {profileReducer, UserProfileType} from './reducers/profile_reducer';
 import {usersReducer, UserType} from './reducers/users_reducer';
 
 const rootReducer = combineReducers({
@@ -22,6 +22,7 @@ export type AllActionTypes = AddPostAT
     | SetCurrentPageAT
     | SetTotalUsersCountAT
     | ToggleIsFetchingAT
+    | SetUserProfileAT
 
 export type AddPostAT = {
     type: 'ADD-POST'
@@ -69,6 +70,11 @@ export type SetTotalUsersCountAT = {
 export type ToggleIsFetchingAT = {
     type: 'TOGGLE-IS-FETCHING'
     isFetching: boolean
+}
+
+export type SetUserProfileAT = {
+    type: "SET-USER-PROFILE"
+    profile: UserProfileType
 }
 // === / ACTION TYPES ===
 
