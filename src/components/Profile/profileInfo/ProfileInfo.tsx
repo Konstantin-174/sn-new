@@ -1,7 +1,13 @@
 import React from 'react';
 import styles from './ProfileInfo.module.scss';
+import {UserProfileType} from '../../../state/reducers/profile_reducer';
+import {BsFillExclamationCircleFill} from "react-icons/bs";
 
-const ProfileInfo: React.FC = () => {
+type ProfileInfoPropsType = {
+    profile: UserProfileType
+}
+
+const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile}) => {
     return (
         <section className={styles.infoWrap}>
             <div className={styles.infoItem}>
@@ -9,33 +15,23 @@ const ProfileInfo: React.FC = () => {
                     Name
                 </div>
                 <div className={styles.itemDescription}>
-                    Bender Rodriguez
+                    {profile.fullName}
                 </div>
             </div>
             <div className={styles.infoItem}>
                 <div className={styles.itemTitle}>
-                    Birth
+                    About me
                 </div>
                 <div className={styles.itemDescription}>
-                    10/11/1989
+                    "{profile.aboutMe}"
                 </div>
             </div>
             <div className={styles.infoItem}>
                 <div className={styles.itemTitle}>
-                    Education
+                    Looking for a job
                 </div>
                 <div className={styles.itemDescription}>
-                    University degree
-                </div>
-            </div>
-            <div className={styles.infoItem}>
-                <div className={styles.itemTitle}>
-                    Quotes
-                </div>
-                <div className={styles.itemDescription}>
-                    <div className={styles.descriptionText}>
-                        "I'm going to build my own theme park! With blackjack! And hookers!"
-                    </div>
+                    {profile.lookingForAJob ? <BsFillExclamationCircleFill/> : ""}
                 </div>
             </div>
         </section>

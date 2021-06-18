@@ -7,14 +7,14 @@
     align-items: center;
 
     .itemTitle {
-      width: 25%;
+      min-width: 150px;
       font-weight: lighter;
       font-size: 13px;
       text-transform: uppercase;
     }
 
     .itemDescription {
-      width: 75%;
+      width: 100%;
       font-size: 20px;
       color: #33FF00;
 

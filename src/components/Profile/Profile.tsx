@@ -20,7 +20,7 @@ const Profile: React.FC<ProfilePropsType> = ({profile}) => {
         <section className={styles.profileWrap}>
           <div className={styles.avaDiscript}>
               <Avatar photos={profile.photos}/>
-              <ProfileInfo />
+              <ProfileInfo profile={profile}/>
           </div>
             <MyPostsContainer />
         </section>

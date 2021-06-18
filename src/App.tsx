@@ -16,7 +16,7 @@ function App() {
                 <Navbar/>
                 <section className="Content">
                     <Switch>
-                        <Route path="/profile" render={() => <ProfileContainer/>}/>
+                        <Route path="/profile/:userID?" render={() => <ProfileContainer/>}/>
                         <Route path="/messages" render={() => <MessagesContainer/>}/>
                         <Route path="/friends" render={() => <UsersContainer/>}/>
                         <Redirect to="/profile"/>

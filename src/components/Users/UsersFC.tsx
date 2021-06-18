@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Users.module.scss';
 import img from './images/nonameUser.jpg';
 import {UserType} from '../../state/reducers/users_reducer';
+import { NavLink } from 'react-router-dom';
 
 type UsersFCPropsType = {
     users: Array<UserType>
@@ -44,12 +45,14 @@ export const UsersFC: React.FC<UsersFCPropsType> = ({
                     <section key={u.id}
                              className={styles.innerWrap}>
                         <div className={styles.avaWrap}>
-                            <div className={styles.avaImg}>
-                                <img className={styles.ava}
-                                     src={u.photos.small === null ? img : u.photos.small}
-                                     alt="Avatar"
-                                />
-                            </div>
+                            <NavLink to={"/profile/" + u.id}>
+                                <div className={styles.avaImg}>
+                                    <img className={styles.ava}
+                                         src={u.photos.small === null ? img : u.photos.small}
+                                         alt="Avatar"
+                                    />
+                                </div>
+                            </NavLink>
                             <div className={styles.avaSettings}>
                                 {u.followed
                                     ? <button className={styles.avaBtn} onClick={() => {
