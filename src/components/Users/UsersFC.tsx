@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './Users.module.scss';
 import img from './images/nonameUser.jpg';
 import {UserType} from '../../state/reducers/users_reducer';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
+import axios from 'axios';
 
 type UsersFCPropsType = {
     users: Array<UserType>
@@ -35,7 +36,7 @@ export const UsersFC: React.FC<UsersFCPropsType> = ({
         <section className={styles.usersWrap}>
             <div className={styles.pagesWrap}>
                 {pages.map(p => {
-                    return <span style={{marginLeft: "5px"}}
+                    return <span style={{marginLeft: '5px'}}
                                  className={currentPage === p ? styles.selectedPage : ''}
                                  onClick={() => onPageChanged(p)}>{p}</span>
                 })}
@@ -45,7 +46,7 @@ export const UsersFC: React.FC<UsersFCPropsType> = ({
                     <section key={u.id}
                              className={styles.innerWrap}>
                         <div className={styles.avaWrap}>
-                            <NavLink to={"/profile/" + u.id}>
+                            <NavLink to={'/profile/' + u.id}>
                                 <div className={styles.avaImg}>
                                     <img className={styles.ava}
                                          src={u.photos.small === null ? img : u.photos.small}
@@ -55,12 +56,34 @@ export const UsersFC: React.FC<UsersFCPropsType> = ({
                             </NavLink>
                             <div className={styles.avaSettings}>
                                 {u.followed
-                                    ? <button className={styles.avaBtn} onClick={() => {
-                                        unfollow(u.id)
-                                    }}>Unfollow</button>
-                                    : <button className={styles.avaBtn} onClick={() => {
-                                        follow(u.id)
-                                    }}>Follow</button>}
+                                    ? <button className={styles.avaBtn}
+                                              onClick={() => {
+                                                  axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                                      withCredentials: true,
+                                                      headers: {
+                                                          'API-KEY': '26cd6eda-bc62-4bf5-b3d8-fb025b33cde9'
+                                                      }
+                                                  })
+                                                      .then(response => {
+                                                          if (response.data.resultCode == 0) {
+                                                              unfollow(u.id)
+                                                          }
+                                                      })
+                                              }}>Unfollow</button>
+                                    : <button className={styles.avaBtn}
+                                              onClick={() => {
+                                                  axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},{
+                                                      withCredentials: true,
+                                                      headers: {
+                                                          'API-KEY': '26cd6eda-bc62-4bf5-b3d8-fb025b33cde9'
+                                                      }
+                                                  })
+                                                      .then(response => {
+                                                          if (response.data.resultCode == 0) {
+                                                              follow(u.id)
+                                                          }
+                                                      })
+                                              }}>Follow</button>}
                             </div>
                         </div>
                         <div className={styles.userInfoWrap}>
