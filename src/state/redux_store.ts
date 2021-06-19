@@ -2,11 +2,13 @@ import {combineReducers, createStore } from "redux";
 import {dialogsReducer} from './reducers/dialogs_reducer';
 import {profileReducer, UserProfileType} from './reducers/profile_reducer';
 import {usersReducer, UserType} from './reducers/users_reducer';
+import {authReducer} from './reducers/auth_reducer';
 
 const rootReducer = combineReducers({
     profileReducer,
     dialogsReducer,
-    usersReducer
+    usersReducer,
+    auth: authReducer
 })
 
 export type RootStateType = ReturnType<typeof rootReducer>
@@ -23,6 +25,7 @@ export type AllActionTypes = AddPostAT
     | SetTotalUsersCountAT
     | ToggleIsFetchingAT
     | SetUserProfileAT
+    | SetUserDataAT
 
 export type AddPostAT = {
     type: 'ADD-POST'
@@ -75,6 +78,15 @@ export type ToggleIsFetchingAT = {
 export type SetUserProfileAT = {
     type: "SET-USER-PROFILE"
     profile: UserProfileType
+}
+
+export type SetUserDataAT = {
+    type: "SET-USER-DATA",
+    data: {
+        id: null | number,
+        email: null | string,
+        login: null | string
+    }
 }
 // === / ACTION TYPES ===
 

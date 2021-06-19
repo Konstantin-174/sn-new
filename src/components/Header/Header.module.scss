@@ -26,6 +26,18 @@
   .headContent {
     margin-right: 50px;
     font-size: 20px;
-    color: #33FF00;
+    color: #33ff00;
+
+    a {
+      text-decoration: none;
+      align-items: center;
+      margin-bottom: 10px;
+      transition: .3s;
+      color: #33ff00;
+
+      &:hover {
+        color: #99CC33;
+      }
+    }
   }
 }
