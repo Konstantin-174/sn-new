@@ -83,6 +83,10 @@
           color: #99CC33;
           background-color: darken(#4c5866, 3%);
         }
+
+        &:disabled {
+          color: #464646;
+        }
       }
     }
   }
