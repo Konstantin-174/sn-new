@@ -1,6 +1,10 @@
 import {
     AllActionTypes,
-    FollowAT, SetCurrentPageAT, SetTotalUsersCountAT, SetUsersAT, ToggleIsFetchingAT,
+    FollowAT,
+    SetCurrentPageAT,
+    SetTotalUsersCountAT,
+    SetUsersAT, ToggleFollowingProgressAT,
+    ToggleIsFetchingAT,
     UnfollowAT
 } from '../redux_store';
 
@@ -25,7 +29,8 @@ const InitialState = {
     pagesSize: 5,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: true
+    isFetching: true,
+    followingProgress: [] as Array<number>
 }
 
 export const usersReducer = (state: InitialUsersStateType = InitialState, action: AllActionTypes): InitialUsersStateType => {
@@ -56,6 +61,13 @@ export const usersReducer = (state: InitialUsersStateType = InitialState, action
             return {...state, totalUsersCount: action.count}
         case 'TOGGLE-IS-FETCHING':
             return {...state, isFetching: action.isFetching}
+        case 'TOGGLE-FOLLOWING-PROGRESS':
+            return {
+                ...state,
+                followingProgress: action.isFetching
+                    ? [...state.followingProgress, action.userID]
+                    : state.followingProgress.filter(id => id != action.userID)
+            }
         default:
             return state
     }
@@ -101,6 +113,14 @@ export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingAT => {
     return {
         type: 'TOGGLE-IS-FETCHING',
         isFetching
+    }
+}
+
+export const toggleFollowingProgress = (isFetching: boolean, userID: number): ToggleFollowingProgressAT => {
+    return {
+        type: 'TOGGLE-FOLLOWING-PROGRESS',
+        isFetching,
+        userID
     }
 }
 

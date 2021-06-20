@@ -24,6 +24,7 @@ export type AllActionTypes = AddPostAT
     | SetCurrentPageAT
     | SetTotalUsersCountAT
     | ToggleIsFetchingAT
+    | ToggleFollowingProgressAT
     | SetUserProfileAT
     | SetUserDataAT
 
@@ -73,6 +74,12 @@ export type SetTotalUsersCountAT = {
 export type ToggleIsFetchingAT = {
     type: 'TOGGLE-IS-FETCHING'
     isFetching: boolean
+}
+
+export type ToggleFollowingProgressAT = {
+    type: 'TOGGLE-FOLLOWING-PROGRESS'
+    isFetching: boolean
+    userID: number
 }
 
 export type SetUserProfileAT = {

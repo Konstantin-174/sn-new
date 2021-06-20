@@ -13,6 +13,8 @@ type UsersFCPropsType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
     onPageChanged: (pageNumber: number) => void
+    toggleFollowingProgress: (isFetching: boolean, userID: number) => void
+    followingProgress: Array<number>
 }
 
 export const UsersFC: React.FC<UsersFCPropsType> = ({
@@ -22,7 +24,9 @@ export const UsersFC: React.FC<UsersFCPropsType> = ({
                                                         pagesSize,
                                                         onPageChanged,
                                                         unfollow,
-                                                        follow
+                                                        follow,
+                                                        followingProgress,
+                                                        toggleFollowingProgress
                                                     }) => {
 
     let pagesCount = Math.ceil(totalUsersCount / pagesSize)
@@ -57,7 +61,9 @@ export const UsersFC: React.FC<UsersFCPropsType> = ({
                             <div className={styles.avaSettings}>
                                 {u.followed
                                     ? <button className={styles.avaBtn}
+                                              disabled={followingProgress.some(id => id === u.id)}
                                               onClick={() => {
+                                                  toggleFollowingProgress(true, u.id)
                                                   axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
                                                       withCredentials: true,
                                                       headers: {
@@ -68,10 +74,13 @@ export const UsersFC: React.FC<UsersFCPropsType> = ({
                                                           if (response.data.resultCode == 0) {
                                                               unfollow(u.id)
                                                           }
+                                                          toggleFollowingProgress(false, u.id)
                                                       })
                                               }}>Unfollow</button>
                                     : <button className={styles.avaBtn}
+                                              disabled={followingProgress.some(id => id === u.id)}
                                               onClick={() => {
+                                                  toggleFollowingProgress(true, u.id)
                                                   axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},{
                                                       withCredentials: true,
                                                       headers: {
@@ -82,6 +91,7 @@ export const UsersFC: React.FC<UsersFCPropsType> = ({
                                                           if (response.data.resultCode == 0) {
                                                               follow(u.id)
                                                           }
+                                                          toggleFollowingProgress(false, u.id)
                                                       })
                                               }}>Follow</button>}
                             </div>
