@@ -1,12 +1,14 @@
 import {
     AllActionTypes,
-    FollowAT,
+    FollowAT, RootStateType,
     SetCurrentPageAT,
     SetTotalUsersCountAT,
     SetUsersAT, ToggleFollowingProgressAT,
     ToggleIsFetchingAT,
     UnfollowAT
 } from '../redux_store';
+import {usersAPI} from '../../api/api';
+import {Dispatch} from 'redux';
 
 export type UserType = {
     name: string
@@ -125,3 +127,17 @@ export const toggleFollowingProgress = (isFetching: boolean, userID: number): To
 }
 
 // === / ACTION CREATORS ===
+
+// === THUNKS ===
+export const getUsersThunkCreator = (currentPage: number, pagesSize: number) => {
+    return (dispatch: Dispatch<AllActionTypes>, getState: () => RootStateType) => {
+        dispatch(toggleIsFetching(true))
+        usersAPI.getUsers(currentPage, pagesSize).then(data => {
+            dispatch(toggleIsFetching(false))
+            dispatch(setUsers(data.items));
+            dispatch(setTotalUsersCount(data.totalCount));
+        })
+    }
+}
+
+// === / THUNKS ===

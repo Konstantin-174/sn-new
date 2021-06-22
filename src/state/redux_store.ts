@@ -3,6 +3,8 @@ import {dialogsReducer} from './reducers/dialogs_reducer';
 import {profileReducer, UserProfileType} from './reducers/profile_reducer';
 import {usersReducer, UserType} from './reducers/users_reducer';
 import {authReducer} from './reducers/auth_reducer';
+import { applyMiddleware } from "redux";
+import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
     profileReducer,
@@ -97,4 +99,4 @@ export type SetUserDataAT = {
 }
 // === / ACTION TYPES ===
 
-export const store = createStore(rootReducer);
+export const store = createStore(rootReducer, applyMiddleware(thunk));
