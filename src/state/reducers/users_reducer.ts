@@ -76,14 +76,14 @@ export const usersReducer = (state: InitialUsersStateType = InitialState, action
 }
 
 // === ACTION CREATORS ===
-export const follow = (userID: number): FollowAT => {
+export const followSuccess = (userID: number): FollowAT => {
     return {
         type: 'FOLLOW',
         userID: userID
     }
 }
 
-export const unfollow = (userID: number): UnfollowAT => {
+export const unfollowSuccess = (userID: number): UnfollowAT => {
     return {
         type: 'UNFOLLOW',
         userID: userID
@@ -99,8 +99,8 @@ export const setUsers = (users: Array<UserType>): SetUsersAT => {
 
 export const setCurrentPage = (currentPage: number): SetCurrentPageAT => {
     return {
-     type: 'SET-CURRENT-PAGE',
-     currentPage
+        type: 'SET-CURRENT-PAGE',
+        currentPage
     }
 }
 
@@ -129,13 +129,38 @@ export const toggleFollowingProgress = (isFetching: boolean, userID: number): To
 // === / ACTION CREATORS ===
 
 // === THUNKS ===
-export const getUsersThunkCreator = (currentPage: number, pagesSize: number) => {
+export const getUsers = (currentPage: number, pagesSize: number) => {
     return (dispatch: Dispatch<AllActionTypes>, getState: () => RootStateType) => {
+        dispatch(setCurrentPage(currentPage))
         dispatch(toggleIsFetching(true))
         usersAPI.getUsers(currentPage, pagesSize).then(data => {
             dispatch(toggleIsFetching(false))
             dispatch(setUsers(data.items));
             dispatch(setTotalUsersCount(data.totalCount));
+        })
+    }
+}
+
+export const follow = (userID: number) => {
+    return (dispatch: Dispatch<AllActionTypes>, getState: () => RootStateType) => {
+        dispatch(toggleFollowingProgress(true, userID))
+        usersAPI.follow(userID).then(response => {
+            if (response.data.resultCode == 0) {
+                dispatch(followSuccess(userID))
+            }
+            dispatch(toggleFollowingProgress(false, userID))
+        })
+    }
+}
+
+export const unfollow = (userID: number) => {
+    return (dispatch: Dispatch<AllActionTypes>, getState: () => RootStateType) => {
+        dispatch(toggleFollowingProgress(true, userID))
+        usersAPI.unfollow(userID).then(response => {
+            if (response.data.resultCode == 0) {
+                dispatch(unfollowSuccess(userID))
+            }
+            dispatch(toggleFollowingProgress(false, userID))
         })
     }
 }

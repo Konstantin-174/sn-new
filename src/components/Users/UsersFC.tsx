@@ -3,7 +3,6 @@ import styles from './Users.module.scss';
 import img from './images/nonameUser.jpg';
 import {UserType} from '../../state/reducers/users_reducer';
 import {NavLink} from 'react-router-dom';
-import axios from 'axios';
 
 type UsersFCPropsType = {
     users: Array<UserType>
@@ -13,7 +12,6 @@ type UsersFCPropsType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
     onPageChanged: (pageNumber: number) => void
-    toggleFollowingProgress: (isFetching: boolean, userID: number) => void
     followingProgress: Array<number>
 }
 
@@ -25,8 +23,7 @@ export const UsersFC: React.FC<UsersFCPropsType> = ({
                                                         onPageChanged,
                                                         unfollow,
                                                         follow,
-                                                        followingProgress,
-                                                        toggleFollowingProgress
+                                                        followingProgress
                                                     }) => {
 
     let pagesCount = Math.ceil(totalUsersCount / pagesSize)
@@ -62,38 +59,10 @@ export const UsersFC: React.FC<UsersFCPropsType> = ({
                                 {u.followed
                                     ? <button className={styles.avaBtn}
                                               disabled={followingProgress.some(id => id === u.id)}
-                                              onClick={() => {
-                                                  toggleFollowingProgress(true, u.id)
-                                                  axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                                      withCredentials: true,
-                                                      headers: {
-                                                          'API-KEY': '26cd6eda-bc62-4bf5-b3d8-fb025b33cde9'
-                                                      }
-                                                  })
-                                                      .then(response => {
-                                                          if (response.data.resultCode == 0) {
-                                                              unfollow(u.id)
-                                                          }
-                                                          toggleFollowingProgress(false, u.id)
-                                                      })
-                                              }}>Unfollow</button>
+                                              onClick={() => {unfollow(u.id)}}>Unfollow</button>
                                     : <button className={styles.avaBtn}
                                               disabled={followingProgress.some(id => id === u.id)}
-                                              onClick={() => {
-                                                  toggleFollowingProgress(true, u.id)
-                                                  axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {},{
-                                                      withCredentials: true,
-                                                      headers: {
-                                                          'API-KEY': '26cd6eda-bc62-4bf5-b3d8-fb025b33cde9'
-                                                      }
-                                                  })
-                                                      .then(response => {
-                                                          if (response.data.resultCode == 0) {
-                                                              follow(u.id)
-                                                          }
-                                                          toggleFollowingProgress(false, u.id)
-                                                      })
-                                              }}>Follow</button>}
+                                              onClick={() => {follow(u.id)}}>Follow</button>}
                             </div>
                         </div>
                         <div className={styles.userInfoWrap}>

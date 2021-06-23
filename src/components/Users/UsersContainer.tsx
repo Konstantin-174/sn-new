@@ -2,9 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {RootStateType} from '../../state/redux_store';
 import {
-    follow, getUsersThunkCreator,
-    setCurrentPage,
-    toggleFollowingProgress,
+    follow,
+    getUsers,
     unfollow,
     UserType
 } from '../../state/reducers/users_reducer';
@@ -23,9 +22,7 @@ type MapStatePropsType = {
 type MapDispatchPropsType = {
     follow: (userID: number) => void
     unfollow: (userID: number) => void
-    setCurrentPage: (currentPage: number) => void
-    toggleFollowingProgress: (isFetching: boolean, userID: number) => void
-    getUsersThunkCreator: (currentPage: number, pagesSize: number) => void
+    getUsers: (currentPage: number, pagesSize: number) => void
 }
 
 type UsersPropsType = MapStatePropsType & MapDispatchPropsType
@@ -33,11 +30,11 @@ type UsersPropsType = MapStatePropsType & MapDispatchPropsType
 class Users extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.getUsersThunkCreator(this.props.currentPage, this.props.pagesSize)
+        this.props.getUsers(this.props.currentPage, this.props.pagesSize)
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsersThunkCreator(pageNumber, this.props.pagesSize)
+        this.props.getUsers(pageNumber, this.props.pagesSize)
     }
 
     render() {
@@ -52,7 +49,6 @@ class Users extends React.Component<UsersPropsType> {
                          unfollow={this.props.unfollow}
                          onPageChanged={this.onPageChanged}
                          followingProgress={this.props.followingProgress}
-                         toggleFollowingProgress={this.props.toggleFollowingProgress}
                 />
             </>
         )
@@ -73,7 +69,5 @@ let mapStateToProps = (state: RootStateType): MapStatePropsType => {
 export const UsersContainer = connect<MapStatePropsType, MapDispatchPropsType, {}, RootStateType>(mapStateToProps, {
     follow,
     unfollow,
-    setCurrentPage,
-    toggleFollowingProgress,
-    getUsersThunkCreator
+    getUsers
 })(Users)
