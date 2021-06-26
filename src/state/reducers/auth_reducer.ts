@@ -2,6 +2,8 @@ import {
     AllActionTypes,
     SetUserDataAT
 } from '../redux_store';
+import {Dispatch} from 'redux';
+import {authMe} from '../../api/api';
 
 export type InitialAuthStateType = {
     id: null | number,
@@ -31,7 +33,7 @@ export const authReducer = (state: InitialAuthStateType = InitialState, action: 
 }
 
 // === ACTION CREATORS ===
-export const setUserData = (data: InitialAuthStateType): SetUserDataAT => {
+const setUserData = (data: InitialAuthStateType): SetUserDataAT => {
     return {
         type: "SET-USER-DATA",
         data
@@ -39,3 +41,14 @@ export const setUserData = (data: InitialAuthStateType): SetUserDataAT => {
 }
 
 // === / ACTION CREATORS ===
+
+// === THUNKS ===
+export const getUserData = () => (dispatch: Dispatch<AllActionTypes>) => {
+    authMe.getMe().then(response => {
+        if (response.data.resultCode == 0) {
+            dispatch(setUserData(response.data.data))
+        }
+    })
+}
+
+// === / THUNKS ===

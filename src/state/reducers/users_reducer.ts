@@ -76,49 +76,49 @@ export const usersReducer = (state: InitialUsersStateType = InitialState, action
 }
 
 // === ACTION CREATORS ===
-export const followSuccess = (userID: number): FollowAT => {
+const followSuccess = (userID: number): FollowAT => {
     return {
         type: 'FOLLOW',
         userID: userID
     }
 }
 
-export const unfollowSuccess = (userID: number): UnfollowAT => {
+const unfollowSuccess = (userID: number): UnfollowAT => {
     return {
         type: 'UNFOLLOW',
         userID: userID
     }
 }
 
-export const setUsers = (users: Array<UserType>): SetUsersAT => {
+const setUsers = (users: Array<UserType>): SetUsersAT => {
     return {
         type: 'SET-USERS',
         users
     }
 }
 
-export const setCurrentPage = (currentPage: number): SetCurrentPageAT => {
+const setCurrentPage = (currentPage: number): SetCurrentPageAT => {
     return {
         type: 'SET-CURRENT-PAGE',
         currentPage
     }
 }
 
-export const setTotalUsersCount = (count: number): SetTotalUsersCountAT => {
+const setTotalUsersCount = (count: number): SetTotalUsersCountAT => {
     return {
         type: 'SET-TOTAL-USERS-COUNT',
         count
     }
 }
 
-export const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingAT => {
+const toggleIsFetching = (isFetching: boolean): ToggleIsFetchingAT => {
     return {
         type: 'TOGGLE-IS-FETCHING',
         isFetching
     }
 }
 
-export const toggleFollowingProgress = (isFetching: boolean, userID: number): ToggleFollowingProgressAT => {
+const toggleFollowingProgress = (isFetching: boolean, userID: number): ToggleFollowingProgressAT => {
     return {
         type: 'TOGGLE-FOLLOWING-PROGRESS',
         isFetching,

@@ -5,6 +5,8 @@ import {
     ChangeNewTextAT, SetUserProfileAT
 } from '../redux_store';
 import {PhotosType} from './users_reducer';
+import {Dispatch} from 'redux';
+import {usersAPI} from '../../api/api';
 
 export type UserProfileType = {
     aboutMe: string
@@ -12,7 +14,7 @@ export type UserProfileType = {
     lookingForAJob: boolean
     lookingForAJobDescription: string | null
     fullName: string
-    userId: number
+    userId: number | string
     photos: PhotosType
 }
 
@@ -109,7 +111,7 @@ export const changeNewTextAC = (newText: string): ChangeNewTextAT => {
     }
 }
 
-export const setUserProfile = (profile: UserProfileType): SetUserProfileAT => {
+const setUserProfile = (profile: UserProfileType): SetUserProfileAT => {
     return {
         type: "SET-USER-PROFILE",
         profile
@@ -117,3 +119,12 @@ export const setUserProfile = (profile: UserProfileType): SetUserProfileAT => {
 }
 
 // === / ACTION CREATORS ===
+
+// === THUNKS ===
+export const getUserProfile = (userID: string) => (dispatch: Dispatch<AllActionTypes>) => {
+    usersAPI.getProfile(userID).then(response => {
+        dispatch(setUserProfile(response.data));
+    })
+}
+
+// === / THUNKS ===
