@@ -14,6 +14,7 @@ type MapStatePropsType = {
     newMessage: string
     dialogs: Array<DialogsType>
     messages: Array<MessageType>
+    isAuth: boolean
 }
 
 type MapDispatchPropsType = {
@@ -27,7 +28,8 @@ let mapStateToProps = (state: RootStateType): MapStatePropsType => {
     return {
         newMessage: state.dialogsReducer.newMessageText,
         dialogs: state.dialogsReducer.dialogs,
-        messages: state.dialogsReducer.messages
+        messages: state.dialogsReducer.messages,
+        isAuth: state.auth.isAuth
     }
 }
 

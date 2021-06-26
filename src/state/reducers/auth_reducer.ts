@@ -43,7 +43,7 @@ const setUserData = (data: InitialAuthStateType): SetUserDataAT => {
 // === / ACTION CREATORS ===
 
 // === THUNKS ===
-export const getUserData = () => (dispatch: Dispatch<AllActionTypes>) => {
+export const getAuthUserData = () => (dispatch: Dispatch<AllActionTypes>) => {
     authMe.getMe().then(response => {
         if (response.data.resultCode == 0) {
             dispatch(setUserData(response.data.data))
